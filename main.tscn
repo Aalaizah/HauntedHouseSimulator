@@ -1,0 +1,76 @@
+[gd_scene load_steps=9 format=3 uid="uid://d16vy5ixp0s7c"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
+[ext_resource type="PackedScene" uid="uid://ceoj2r1rw1dem" path="res://house.tscn" id="2_fcs3a"]
+[ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
+[ext_resource type="Texture2D" uid="uid://6es3iecwiuiq" path="res://button.png" id="4_hmpq2"]
+[ext_resource type="Texture2D" uid="uid://32r74hgwuah0" path="res://buttonPressed.png" id="5_ubuw4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_heahr"]
+font_size = 30
+
+[sub_resource type="Curve2D" id="Curve2D_jjcds"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 218, 101, 0, 0, 0, 0, 817, 102, 0, 0, 0, 0, 818, 399, 0, 0, 0, 0, 210, 405)
+}
+point_count = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_47r48"]
+font_size = 30
+
+[node name="Main" type="Node"]
+script = ExtResource("1_mvq0q")
+house_scene = ExtResource("2_fcs3a")
+guest_scene = ExtResource("3_1utyn")
+
+[node name="GuestTimer" type="Timer" parent="."]
+
+[node name="DayTimer" type="Timer" parent="."]
+wait_time = 30.0
+
+[node name="DayTimerLabel" type="Label" parent="DayTimer"]
+offset_left = 918.0
+offset_top = 52.0
+offset_right = 958.0
+offset_bottom = 75.0
+text = "99"
+label_settings = SubResource("LabelSettings_heahr")
+
+[node name="Label" type="Label" parent="DayTimer/DayTimerLabel"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = -16.0
+offset_right = 83.0
+offset_bottom = 7.0
+text = "Time Left in Day"
+
+[node name="NewDay" type="TextureButton" parent="."]
+offset_left = 777.0
+offset_top = 479.0
+offset_right = 1127.0
+offset_bottom = 629.0
+texture_normal = ExtResource("4_hmpq2")
+texture_pressed = ExtResource("5_ubuw4")
+
+[node name="GuestPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jjcds")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 916.0
+offset_top = 148.0
+offset_right = 956.0
+offset_bottom = 190.0
+text = "99"
+label_settings = SubResource("LabelSettings_47r48")
+
+[node name="Label" type="Label" parent="Score"]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 3.0
+text = "Current Score"
+
+[connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
+[connection signal="pressed" from="NewDay" to="." method="_on_new_day_pressed"]

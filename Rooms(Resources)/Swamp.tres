@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://r7qle1m7d24j"]
+
+[ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_iyu1o"]
+[ext_resource type="Texture2D" uid="uid://ctje7cpp185cw" path="res://Rooms(Resources)/Sprites/Swamp.png" id="2_r8gpt"]
+
+[resource]
+script = ExtResource("1_iyu1o")
+room_size = 0
+name = "Swamp"
+description = "Get out of my swamp"
+texture = ExtResource("2_r8gpt")
