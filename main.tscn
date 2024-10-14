@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
-[ext_resource type="PackedScene" uid="uid://ceoj2r1rw1dem" path="res://house.tscn" id="2_fcs3a"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
 [ext_resource type="Texture2D" uid="uid://6es3iecwiuiq" path="res://button.png" id="4_hmpq2"]
 [ext_resource type="Texture2D" uid="uid://32r74hgwuah0" path="res://buttonPressed.png" id="5_ubuw4"]
+[ext_resource type="PackedScene" uid="uid://bb3xhe2hjaw1p" path="res://hud.tscn" id="6_epp4g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_heahr"]
 font_size = 30
@@ -20,7 +20,6 @@ font_size = 30
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mvq0q")
-house_scene = ExtResource("2_fcs3a")
 guest_scene = ExtResource("3_1utyn")
 
 [node name="GuestTimer" type="Timer" parent="."]
@@ -29,10 +28,10 @@ guest_scene = ExtResource("3_1utyn")
 wait_time = 30.0
 
 [node name="DayTimerLabel" type="Label" parent="DayTimer"]
-offset_left = 918.0
-offset_top = 52.0
-offset_right = 958.0
-offset_bottom = 75.0
+offset_left = 1050.0
+offset_top = 58.0
+offset_right = 1090.0
+offset_bottom = 100.0
 text = "99"
 label_settings = SubResource("LabelSettings_heahr")
 
@@ -43,6 +42,20 @@ offset_top = -16.0
 offset_right = 83.0
 offset_bottom = 7.0
 text = "Time Left in Day"
+
+[node name="DayTimerProgress" type="TextureProgressBar" parent="DayTimer"]
+offset_left = 1098.0
+offset_top = 79.0
+offset_right = 1138.0
+offset_bottom = 119.0
+fill_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="DayTimer"]
+offset_left = 1081.0
+offset_top = 330.0
+offset_right = 1085.0
+offset_bottom = 357.0
+fill_mode = 1
 
 [node name="NewDay" type="TextureButton" parent="."]
 offset_left = 777.0
@@ -56,10 +69,10 @@ texture_pressed = ExtResource("5_ubuw4")
 curve = SubResource("Curve2D_jjcds")
 
 [node name="Score" type="Label" parent="."]
-offset_left = 916.0
-offset_top = 148.0
-offset_right = 956.0
-offset_bottom = 190.0
+offset_left = 1048.0
+offset_top = 154.0
+offset_right = 1088.0
+offset_bottom = 196.0
 text = "99"
 label_settings = SubResource("LabelSettings_47r48")
 
@@ -70,6 +83,8 @@ offset_top = -20.0
 offset_right = 75.0
 offset_bottom = 3.0
 text = "Current Score"
+
+[node name="Hud" parent="." instance=ExtResource("6_epp4g")]
 
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

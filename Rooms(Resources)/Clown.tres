@@ -1,11 +1,14 @@
-[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://cihj02eo7c745"]
+[gd_resource type="Resource" script_class="RoomData" load_steps=4 format=3 uid="uid://cihj02eo7c745"]
 
+[ext_resource type="Texture2D" uid="uid://tsydddc08gpi" path="res://Rooms(Resources)/Sprites/GlurpoIcon.png" id="1_bfria"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_iyu1o"]
-[ext_resource type="Texture2D" uid="uid://32pc7wdupyh" path="res://Rooms(Resources)/Sprites/Glurpo.png" id="2_444bq"]
+[ext_resource type="Texture2D" uid="uid://b78krfoaw0bcu" path="res://Rooms(Resources)/Sprites/GlurpoTexture.png" id="3_xern1"]
 
 [resource]
 script = ExtResource("1_iyu1o")
 room_size = 0
-name = "Clown"
+room_name = "Clown"
 description = "GLURPO KNOWS ALL"
-texture = ExtResource("2_444bq")
+texture = ExtResource("3_xern1")
+icon = ExtResource("1_bfria")
+price = 100

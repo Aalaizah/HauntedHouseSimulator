@@ -27,4 +27,5 @@ shape = SubResource("RectangleShape2D_nyega")
 disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_3k2u6")
