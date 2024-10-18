@@ -11,4 +11,4 @@ room_name = "Operating Room"
 description = ""
 texture = ExtResource("3_3tv2o")
 icon = ExtResource("1_psyl3")
-price = 100
+price = 150

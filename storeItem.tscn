@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://vybrjdhqtxfj"]
+
+[ext_resource type="Texture2D" uid="uid://b44xkgax0665t" path="res://Rooms(Resources)/Sprites/ClassIcon.png" id="1_2js2m"]
+[ext_resource type="Script" path="res://store_item.gd" id="1_lqj16"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_lqj16")
+
+[node name="IconContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Icon" type="TextureRect" parent="IconContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_2js2m")
+stretch_mode = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="RoomName" type="Label" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Room Name"
+
+[node name="RoomDescription" type="Label" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Descriptions"
+
+[node name="Price" type="Label" parent="MarginContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Price"
+
+[node name="MarginContainer3" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="MarginContainer3"]
+layout_mode = 2
+text = "Buy"

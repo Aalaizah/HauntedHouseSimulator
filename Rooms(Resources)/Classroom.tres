@@ -11,4 +11,4 @@ room_name = "Classroom"
 description = ""
 texture = ExtResource("3_8lj1u")
 icon = ExtResource("1_la3q2")
-price = 100
+price = 150

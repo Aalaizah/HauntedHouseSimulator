@@ -11,4 +11,4 @@ room_name = "Clown"
 description = "GLURPO KNOWS ALL"
 texture = ExtResource("3_xern1")
 icon = ExtResource("1_bfria")
-price = 100
+price = 150

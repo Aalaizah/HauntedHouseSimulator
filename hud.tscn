@@ -18,21 +18,14 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="RoomInventory" type="GridContainer" parent="HUD"]
+[node name="RoomInventory" type="VBoxContainer" parent="HUD"]
 unique_name_in_owner = true
 offset_left = 776.0
 offset_top = 24.0
 offset_right = 816.0
 offset_bottom = 64.0
 
-[node name="RoomStore" type="ItemList" parent="HUD"]
+[node name="StoreInventory" type="VBoxContainer" parent="HUD"]
 unique_name_in_owner = true
-offset_right = 584.0
-offset_bottom = 576.0
-
-[node name="TextureButton" type="TextureButton" parent="HUD/RoomStore"]
-layout_mode = 0
-offset_left = 528.0
-offset_top = 536.0
-offset_right = 568.0
-offset_bottom = 576.0
+offset_right = 632.0
+offset_bottom = 592.0

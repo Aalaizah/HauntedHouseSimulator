@@ -11,4 +11,4 @@ room_name = "Swamp"
 description = "And in the morning I'm making waffles"
 texture = ExtResource("3_cvnv7")
 icon = ExtResource("1_i5dwg")
-price = 100
+price = 150

@@ -11,4 +11,4 @@ room_name = "Witch's Hut"
 description = ""
 texture = ExtResource("3_eet22")
 icon = ExtResource("1_vq0e4")
-price = 100
+price = 150

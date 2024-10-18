@@ -57,18 +57,18 @@ fill_mode = 1
 
 [node name="NewDay" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 944.0
-offset_top = 463.0
-offset_right = 1145.0
-offset_bottom = 546.0
+offset_left = 777.0
+offset_top = 479.0
+offset_right = 1127.0
+offset_bottom = 629.0
 text = "New Day"
 
 [node name="CloseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 992.0
-offset_top = 565.0
-offset_right = 1117.0
-offset_bottom = 642.0
+offset_left = 777.0
+offset_top = 479.0
+offset_right = 1127.0
+offset_bottom = 629.0
 text = "Close Store"
 
 [node name="GuestPath" type="Path2D" parent="."]
@@ -94,5 +94,3 @@ text = "Current Score"
 
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
-[connection signal="pressed" from="NewDay" to="." method="_on_new_day_pressed"]
-[connection signal="pressed" from="CloseStore" to="." method="_on_close_store_pressed"]

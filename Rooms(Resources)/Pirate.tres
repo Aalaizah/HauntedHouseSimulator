@@ -11,4 +11,4 @@ room_name = "Pirate"
 description = ""
 texture = ExtResource("3_tv0uw")
 icon = ExtResource("1_wnxs5")
-price = 100
+price = 150
