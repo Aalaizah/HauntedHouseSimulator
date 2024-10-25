@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=2 format=3 uid="uid://dtyl4bm41mwu"]
+
+[ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_5giyf"]
+
+[resource]
+script = ExtResource("1_5giyf")
+room_size = 0
+room_name = "Chain Saw"
+description = ""
+price = 0

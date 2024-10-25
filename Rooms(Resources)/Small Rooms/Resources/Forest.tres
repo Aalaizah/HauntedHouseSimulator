@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=4 format=3 uid="uid://dg3fln5218r3c"]
+
+[ext_resource type="Texture2D" uid="uid://ojgrps7didr1" path="res://Rooms(Resources)/Small Rooms/Sprites/ForestIcon.png" id="1_8ypqa"]
+[ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_eogfa"]
+[ext_resource type="Texture2D" uid="uid://dsn3ivg1067xx" path="res://Rooms(Resources)/Small Rooms/Sprites/ForestTexture.png" id="3_ldu3m"]
+
+[resource]
+script = ExtResource("1_eogfa")
+room_size = 0
+room_name = "Forest"
+description = ""
+texture = ExtResource("3_ldu3m")
+icon = ExtResource("1_8ypqa")
+price = 150

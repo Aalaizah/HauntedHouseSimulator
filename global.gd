@@ -1,5 +1,5 @@
 extends Node
-enum States {STORE_OPEN, DAY_RUNNING}
+enum States {STORE_OPEN, DAY_RUNNING, MODIFYING_HOUSE}
 var state: States = States.STORE_OPEN
 var small_room_size = 200
 var icon_size = 50

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://d16vy5ixp0s7c"]
+[gd_scene load_steps=9 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
+[ext_resource type="AudioStream" uid="uid://cpk5finy8hspf" path="res://Music/Enemies, Questionable Allies, and Tests.wav" id="4_t2ody"]
 [ext_resource type="PackedScene" uid="uid://bb3xhe2hjaw1p" path="res://hud.tscn" id="6_epp4g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_heahr"]
@@ -15,6 +16,10 @@ point_count = 4
 
 [sub_resource type="LabelSettings" id="LabelSettings_47r48"]
 font_size = 30
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jwtc6"]
+stream_count = 1
+stream_0 = ExtResource("4_t2ody")
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mvq0q")
@@ -92,7 +97,22 @@ text = "Current Score"
 
 [node name="Hud" parent="." instance=ExtResource("6_epp4g")]
 
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamPlaylist_jwtc6")
+autoplay = true
+
+[node name="AudioSetting" type="CheckBox" parent="."]
+unique_name_in_owner = true
+offset_left = 1195.0
+offset_top = 51.0
+offset_right = 1233.0
+offset_bottom = 85.0
+button_pressed = true
+text = "Sound"
+
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="pressed" from="NewDay" to="." method="_on_new_day_pressed"]
 [connection signal="pressed" from="CloseStore" to="." method="_on_close_store_pressed"]
+[connection signal="toggled" from="AudioSetting" to="." method="_on_audio_setting_toggled"]

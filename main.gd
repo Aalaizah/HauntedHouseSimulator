@@ -3,6 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
+var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -16,21 +17,11 @@ func _process(delta: float) -> void:
 		var speed = guest.get_child(0).speed
 		guest.set_progress(guest.get_progress() + speed * delta)
 		if guest.get_progress_ratio() == 1:
-			var score_to_add = (randi() % 5) + 1
-			var score_multiplier = 1
-			if Global.current_rooms.has(guest.get_child(0).favorite_room):
-				score_multiplier = 2
+			guest.get_child(0).guest_exited_house()
 			guest.queue_free()
-			Global.score += score_to_add * score_multiplier
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
 	get_node("Score").text = str(Global.score)
 	get_node("DayTimer/ProgressBar").value = timer.wait_time - timer.time_left
-	#if (Global.currentDay % 7 == 0 and day_ended):
-		#store_open = true
-		#$Hud/HUD/HouseGrid.hide()
-		#$Hud/HUD/StoreInventory.show()
-		#$CloseStore.show()
-		#day_ended = false
 	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
 		$Hud/HUD/RoomInventory.show()
 		$NewDay.show()
@@ -44,20 +35,37 @@ func new_game():
 	day_ended = false
 	new_guest_path()
 	get_node("DayTimer/ProgressBar").max_value = get_node("DayTimer").wait_time
-	get_node("DayTimer/ProgressBar").hide()
-	get_node("DayTimer/DayTimerLabel").hide()
-	store_open = true
-	$NewDay.hide()
+	if testingDay:
+		var rooms = Global.all_rooms.keys()
+		for i in Global.house_size:
+			var current_house_slot = $Hud/HUD/HouseGrid.get_child(i)
+			var room_to_add = Global.all_rooms[rooms[i]]
+			if current_house_slot.get_child_count() == 0:
+				current_house_slot.add_child(room_to_add)
+				Global.current_rooms[room_to_add.name] = room_to_add
+		store_open = false
+		$CloseStore.text = "Open Store"
+		$Hud/HUD/StoreInventory.hide()
+		$Hud/HUD/HouseGrid.show()
+	else:
+		get_node("DayTimer/ProgressBar").hide()
+		get_node("DayTimer/DayTimerLabel").hide()
+		store_open = true
+		$NewDay.hide()
 	
 func new_guest_path():
 	var path = $GuestPath.curve
 	var room_center_point = Global.small_room_size / 2.0
 	var house_location = $Hud/HUD/HouseGrid.get_global_position()
+	var half_house_size = Global.house_size / 2.0
 	path.clear_points()
 	path.add_point(Vector2(house_location.x - room_center_point, room_center_point + house_location.y))
-	path.add_point(Vector2(room_center_point * 6 + house_location.x, room_center_point + house_location.y))
-	path.add_point(Vector2(room_center_point * 6 + house_location.x, room_center_point * 3 + house_location.y))
-	path.add_point(Vector2(room_center_point - house_location.x, room_center_point * 3 + house_location.y))
+	path.add_point(Vector2(room_center_point * Global.house_size + house_location.x, 
+		room_center_point + house_location.y))
+	path.add_point(Vector2(room_center_point * Global.house_size + house_location.x, 
+		room_center_point * half_house_size + house_location.y))
+	path.add_point(Vector2(room_center_point - house_location.x, room_center_point * 
+		half_house_size + house_location.y))
 	
 func get_room():
 	if Global.all_rooms.size() > 0:
@@ -109,8 +117,17 @@ func _on_close_store_pressed() -> void:
 		$CloseStore.text = "Open Store"
 		$Hud/HUD/StoreInventory.hide()
 		$Hud/HUD/HouseGrid.show()
+		$NewDay.show()
 	else:
 		store_open = true
 		$CloseStore.text = "Close Store"
 		$Hud/HUD/StoreInventory.show()
 		$Hud/HUD/HouseGrid.hide()
+		$NewDay.hide()
+
+
+func _on_audio_setting_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		$MusicPlayer.stream_paused = false
+	else:
+		$MusicPlayer.stream_paused = true

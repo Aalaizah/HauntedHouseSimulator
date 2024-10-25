@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vybrjdhqtxfj"]
 
-[ext_resource type="Texture2D" uid="uid://b44xkgax0665t" path="res://Rooms(Resources)/Sprites/ClassIcon.png" id="1_2js2m"]
+[ext_resource type="Texture2D" uid="uid://b44xkgax0665t" path="res://Rooms(Resources)/Small Rooms/Sprites/ClassIcon.png" id="1_2js2m"]
 [ext_resource type="Script" path="res://store_item.gd" id="1_lqj16"]
 
 [node name="HBoxContainer" type="HBoxContainer"]
