@@ -4,12 +4,6 @@ extends PanelContainer
 func init(cms: Vector2) -> void:
 	custom_minimum_size = cms
 	EventBus.successful_purchase.connect(add_label)
-	
-func _ready():
-	#var inventoryContainer = HBoxContainer.new()
-	#add_child(inventoryContainer)
-	pass
-
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is RoomItem:
@@ -26,10 +20,14 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		var current_parent = data.get_parent()
 		item.reparent(current_parent)
 		
+	if data.data.room_size != 0:
+		EventBus.large_room_removed.emit(data)
+		data.in_house = false
 	
 	if !Global.available_rooms.has(data):
 		Global.current_rooms.erase(data.name)
 		Global.available_rooms[data.name] = data
+	data.texture = data.data.icon
 	data.reparent(self)
 	add_label(data)
 	

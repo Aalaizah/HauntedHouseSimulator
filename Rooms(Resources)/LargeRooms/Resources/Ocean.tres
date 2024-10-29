@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3 uid="uid://cc27i45d6sypn"]
+
+[ext_resource type="Texture2D" uid="uid://dg1tx8bngnslq" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanTexture.png" id="1_bp32e"]
+[ext_resource type="Texture2D" uid="uid://b1hcqoev0iwao" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanIcon.png" id="2_akdfl"]
+[ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="3_3toqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr3kv"]
+atlas = ExtResource("1_bp32e")
+
+[resource]
+script = ExtResource("3_3toqa")
+room_size = 3
+room_name = "Ocean"
+description = ""
+texture = ExtResource("1_bp32e")
+atlasTexture = SubResource("AtlasTexture_xr3kv")
+icon = ExtResource("2_akdfl")
+price = 200

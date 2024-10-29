@@ -98,7 +98,11 @@ func _on_new_day_pressed() -> void:
 	$CloseStore.hide()
 	get_node("NewDay").hide()
 	var day_over = $DayTimer.is_stopped()
-	if day_over and Global.house_size == Global.current_rooms.size():
+	var current_rooms = 0
+	for room in $Hud/HUD/HouseGrid.get_children():
+		if room.get_child_count() > 0:
+			current_rooms += 1
+	if day_over and Global.house_size == current_rooms:
 		get_node("DayTimer/ProgressBar").show()
 		get_node("Score").show()
 		get_node("DayTimer/DayTimerLabel").show()
