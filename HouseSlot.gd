@@ -14,14 +14,27 @@ func _ready():
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is RoomItem:
 		if get_child_count() == 0:
+			var slot_right = slot_loc
+			slot_right.x += 1
+			var slot_down = slot_loc
+			slot_down.y += 1
+			var slot_diagonal = slot_loc
+			slot_diagonal.x += 1
+			slot_diagonal.y += 1
+			var house_grid = get_parent()
+			if house_grid.get_node_or_null(str(slot_right)) != null:
+				var room_right = house_grid.get_node(str(slot_right))
 			match data.data.room_size:
 				0:
 					return true
 				1:
-					if slot_loc.y == (Global.house_size / 2) - 1:
+					if slot_loc.x == (Global.house_size / 2.0) - 1:
 						return false
 				2:
-					if slot_loc.x > 0:
+					if slot_loc.y > 0:
+						return false
+				3:
+					if slot_loc.y > 0 or slot_loc.x > 1:
 						return false
 			return true
 	return false
@@ -33,7 +46,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 			return
 		item.reparent(data.get_parent())
 	if !Global.current_rooms.has(data):
-		Global.available_rooms.erase(data.name)
+		Global.inventory_rooms.erase(data.name)
 		Global.current_rooms[data.name] = data
 	data.reparent(self)
 	if data.data.room_size != 0:

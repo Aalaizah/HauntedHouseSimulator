@@ -24,9 +24,9 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		EventBus.large_room_removed.emit(data)
 		data.in_house = false
 	
-	if !Global.available_rooms.has(data):
+	if !Global.inventory_rooms.has(data):
 		Global.current_rooms.erase(data.name)
-		Global.available_rooms[data.name] = data
+		Global.inventory_rooms[data.name] = data
 	data.texture = data.data.icon
 	data.reparent(self)
 	add_label(data)

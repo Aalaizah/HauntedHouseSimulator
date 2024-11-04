@@ -18,14 +18,24 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="RoomInventory" type="VBoxContainer" parent="HUD"]
-unique_name_in_owner = true
-offset_left = 776.0
-offset_top = 24.0
-offset_right = 816.0
-offset_bottom = 64.0
-
 [node name="StoreInventory" type="VBoxContainer" parent="HUD"]
 unique_name_in_owner = true
-offset_right = 632.0
-offset_bottom = 592.0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 696.0
+offset_bottom = 656.0
+
+[node name="RoomScroll" type="ScrollContainer" parent="HUD"]
+anchors_preset = -1
+anchor_left = 0.48
+anchor_top = 0.08
+anchor_right = 0.48
+anchor_bottom = 0.08
+offset_top = -8.00001
+offset_right = 432.0
+offset_bottom = 376.0
+horizontal_scroll_mode = 0
+
+[node name="RoomInventory" type="VBoxContainer" parent="HUD/RoomScroll"]
+unique_name_in_owner = true
+layout_mode = 2

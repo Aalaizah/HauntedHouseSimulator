@@ -14,8 +14,9 @@ func _process(delta: float) -> void:
 	var guests = get_node("GuestPath").get_children()
 	var timer = get_node("DayTimer")
 	for guest in guests:
-		var speed = guest.get_child(0).speed
-		guest.set_progress(guest.get_progress() + speed * delta)
+		if guest.get_child_count() > 0:
+			var speed = guest.get_child(0).speed
+			guest.set_progress(guest.get_progress() + speed * delta)
 		if guest.get_progress_ratio() == 1:
 			guest.get_child(0).guest_exited_house()
 			guest.queue_free()
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 	get_node("Score").text = str(Global.score)
 	get_node("DayTimer/ProgressBar").value = timer.wait_time - timer.time_left
 	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
-		$Hud/HUD/RoomInventory.show()
+		$Hud/HUD/RoomScroll/RoomInventory.show()
 		$NewDay.show()
 		$CloseStore.show()
 		get_node("DayTimer/ProgressBar").hide()
@@ -60,9 +61,9 @@ func new_guest_path():
 	var half_house_size = Global.house_size / 2.0
 	path.clear_points()
 	path.add_point(Vector2(house_location.x - room_center_point, room_center_point + house_location.y))
-	path.add_point(Vector2(room_center_point * Global.house_size + house_location.x, 
+	path.add_point(Vector2(room_center_point * Global.house_size,
 		room_center_point + house_location.y))
-	path.add_point(Vector2(room_center_point * Global.house_size + house_location.x, 
+	path.add_point(Vector2(room_center_point * Global.house_size, 
 		room_center_point * half_house_size + house_location.y))
 	path.add_point(Vector2(room_center_point - house_location.x, room_center_point * 
 		half_house_size + house_location.y))
@@ -79,7 +80,7 @@ func get_room():
 
 func _on_guest_timer_timeout() -> void:
 	var guest_path = PathFollow2D.new()
-	guest_path.rotates = false
+	guest_path.rotates = true
 	guest_path.loop = false
 	get_node("GuestPath").add_child(guest_path)
 	var guest = guest_scene.instantiate()
@@ -106,7 +107,7 @@ func _on_new_day_pressed() -> void:
 		get_node("DayTimer/ProgressBar").show()
 		get_node("Score").show()
 		get_node("DayTimer/DayTimerLabel").show()
-		$Hud/HUD/RoomInventory.hide()
+		$Hud/HUD/RoomScroll/RoomInventory.hide()
 		$GuestTimer.wait_time = randf_range(2, 6)
 		$GuestTimer.start()
 		$DayTimer.one_shot = true

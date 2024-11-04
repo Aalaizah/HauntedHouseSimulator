@@ -6,6 +6,7 @@ var tip_multiplier = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	speed = randf_range(100, 200)
+	$AnimatedSprite2D.play()
 	
 func guest_exited_house():
 	var score_to_add = (randi() % 5) + 1
