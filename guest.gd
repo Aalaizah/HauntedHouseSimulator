@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Node
 var speed = 50
 var favorite_room
 var tip_multiplier = 1

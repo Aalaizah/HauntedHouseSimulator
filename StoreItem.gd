@@ -1,8 +1,8 @@
 class_name StoreItem
 extends HBoxContainer
-var data: RoomData
+var data
 
-func init(room: RoomData):
+func init(room):
 	data = room
 
 

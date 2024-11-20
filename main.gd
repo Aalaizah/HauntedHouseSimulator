@@ -3,6 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
+var startingScore: int = 5000
 var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +12,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	get_node("Score").text = str(Global.score)
 	var guests = get_node("GuestPath").get_children()
 	var timer = get_node("DayTimer")
 	for guest in guests:
@@ -21,7 +23,6 @@ func _process(delta: float) -> void:
 			guest.get_child(0).guest_exited_house()
 			guest.queue_free()
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
-	get_node("Score").text = str(Global.score)
 	get_node("DayTimer/ProgressBar").value = timer.wait_time - timer.time_left
 	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
 		$Hud/HUD/RoomScroll/RoomInventory.show()
@@ -32,7 +33,7 @@ func _process(delta: float) -> void:
 		day_ended = true
 	
 func new_game():
-	Global.score = 1000
+	Global.score = startingScore
 	day_ended = false
 	new_guest_path()
 	get_node("DayTimer/ProgressBar").max_value = get_node("DayTimer").wait_time

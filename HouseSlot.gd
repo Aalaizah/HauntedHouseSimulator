@@ -14,16 +14,6 @@ func _ready():
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is RoomItem:
 		if get_child_count() == 0:
-			var slot_right = slot_loc
-			slot_right.x += 1
-			var slot_down = slot_loc
-			slot_down.y += 1
-			var slot_diagonal = slot_loc
-			slot_diagonal.x += 1
-			slot_diagonal.y += 1
-			var house_grid = get_parent()
-			if house_grid.get_node_or_null(str(slot_right)) != null:
-				var room_right = house_grid.get_node(str(slot_right))
 			match data.data.room_size:
 				0:
 					return true

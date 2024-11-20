@@ -20,13 +20,14 @@ func setup_house_grid():
 	
 func setup_house():
 	var houseLocX = 0
-	var houseLocY = 0		
+	var houseLocY = 0
+	var columnsFrom0 = (Global.house_size / 2.0) - 1
+	%HouseGrid.columns = Global.house_size / 2.0
 	for i in HouseSize:
 		var slot := HouseSlot.new()
 		slot.init(RoomData.Room_Size.SMALL, Vector2(200, 200))
 		slot.slot_loc = Vector2(houseLocX, houseLocY)
 		slot.name = str(slot.slot_loc)
-		var columnsFrom0 = (Global.house_size / 2.0) - 1
 		if i >= (columnsFrom0):
 			houseLocX = i-columnsFrom0
 			houseLocY = 1
