@@ -38,6 +38,16 @@ func setup_house_grid():
 	
 func clear_house():
 	for slot in %HouseGrid.get_children():
+		var has_room = slot.get_child_count()
+		if has_room > 0:
+			var room = slot.get_child(0)
+			var inventory = get_node("RoomScroll/RoomInventory")
+			for place in inventory.get_children():
+				if place.get_child_count() == 0:
+					room.reparent(place)
+					Global.inventory_rooms[room.name] = room
+					Global.current_rooms.erase(room.name)
+					place.add_label(room)
 		%HouseGrid.remove_child(slot)
 		slot.queue_free()
 	
