@@ -18,12 +18,15 @@ theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3
 
-[node name="StoreInventory" type="VBoxContainer" parent="HUD"]
-unique_name_in_owner = true
+[node name="StoreInventoryScroll" type="ScrollContainer" parent="HUD"]
 offset_left = 64.0
 offset_top = 256.0
 offset_right = 696.0
-offset_bottom = 848.0
+offset_bottom = 640.0
+
+[node name="StoreInventory" type="VBoxContainer" parent="HUD/StoreInventoryScroll"]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="RoomScroll" type="ScrollContainer" parent="HUD"]
 anchors_preset = -1
