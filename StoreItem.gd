@@ -14,11 +14,11 @@ func _ready() -> void:
 	iconContainer.add_child(icon)
 	add_child(iconContainer)
 	
-	var name: String
+	var item_name: String
 	if data is RoomData:
-		name = data.room_name
+		item_name = data.room_name
 	elif data is HouseData:
-		name = data.name
+		item_name = data.name
 	
 	var textContainer = MarginContainer.new()
 	textContainer.custom_minimum_size = Vector2(400, 50)
@@ -26,7 +26,7 @@ func _ready() -> void:
 	var nameLabel = Label.new()
 	var descriptionLabel = Label.new()
 	var priceLabel = Label.new()
-	nameLabel.text = name
+	nameLabel.text = item_name
 	descriptionLabel.text = data.description
 	priceLabel.text = str(data.price)
 	textBoxContainer.add_child(nameLabel)
