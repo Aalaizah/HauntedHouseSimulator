@@ -23,12 +23,12 @@ func _process(delta: float) -> void:
 			guest.get_child(0).guest_exited_house()
 			guest.queue_free()
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
-	get_node("DayTimer/ProgressBar").value = timer.wait_time - timer.time_left
+	get_node("DayTimer/DayTimerProgress").value = timer.wait_time - timer.time_left
 	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
 		$Hud/HUD/RoomScroll/RoomInventory.show()
 		$NewDay.show()
 		$CloseStore.show()
-		get_node("DayTimer/ProgressBar").hide()
+		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
 		day_ended = true
 	
@@ -36,7 +36,7 @@ func new_game():
 	Global.score = startingScore
 	day_ended = false
 	new_guest_path()
-	get_node("DayTimer/ProgressBar").max_value = get_node("DayTimer").wait_time
+	get_node("DayTimer/DayTimerProgress").max_value = get_node("DayTimer").wait_time
 	if testingDay:
 		var rooms = Global.all_rooms.keys()
 		for i in Global.house_size:
@@ -50,7 +50,7 @@ func new_game():
 		$Hud/HUD/StoreInventory.hide()
 		$Hud/HUD/HouseGrid.show()
 	else:
-		get_node("DayTimer/ProgressBar").hide()
+		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
 		store_open = true
 		$NewDay.hide()
@@ -105,9 +105,9 @@ func _on_new_day_pressed() -> void:
 		if room.get_child_count() > 0:
 			current_rooms += 1
 	if day_over and Global.house_size == current_rooms:
-		get_node("DayTimer/ProgressBar").show()
 		get_node("Score").show()
 		get_node("DayTimer/DayTimerLabel").show()
+		get_node("DayTimer/DayTimerProgress").show()
 		$Hud/HUD/RoomScroll/RoomInventory.hide()
 		$GuestTimer.wait_time = randf_range(2, 6)
 		$GuestTimer.start()

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d16vy5ixp0s7c"]
+[gd_scene load_steps=10 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
+[ext_resource type="Texture2D" uid="uid://b1hcqoev0iwao" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanIcon.png" id="3_dvily"]
 [ext_resource type="AudioStream" uid="uid://cpk5finy8hspf" path="res://Music/Enemies, Questionable Allies, and Tests.wav" id="4_t2ody"]
 [ext_resource type="PackedScene" uid="uid://bb3xhe2hjaw1p" path="res://hud.tscn" id="6_epp4g"]
 
@@ -52,13 +53,7 @@ offset_top = 50.0
 offset_right = 544.0
 offset_bottom = 90.0
 fill_mode = 4
-
-[node name="ProgressBar" type="ProgressBar" parent="DayTimer"]
-offset_left = 519.0
-offset_top = 60.0
-offset_right = 523.0
-offset_bottom = 87.0
-fill_mode = 1
+texture_progress = ExtResource("3_dvily")
 
 [node name="NewDay" type="Button" parent="."]
 unique_name_in_owner = true
