@@ -1,8 +1,8 @@
 class_name BuyButton
 extends Button
-var data : RoomData
+var data
 
-func init(d: RoomData):
+func init(d):
 	data = d
 
 # Called when the node enters the scene tree for the first time.
@@ -11,4 +11,7 @@ func _ready() -> void:
 	pressed.connect(_on_button_pressed)
 
 func _on_button_pressed():
-	EventBus.room_bought.emit(data.room_name)
+	if data is RoomData:
+		EventBus.room_bought.emit(data.room_name)
+	elif data is HouseData:
+		EventBus.house_bought.emit(data)

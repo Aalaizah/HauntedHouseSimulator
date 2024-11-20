@@ -10,7 +10,8 @@ var all_rooms = {}
 var current_rooms = {}
 var inventory_rooms = {}
 var store_inventory = {}
-var hidden_slots = {}
+var house_inventory = {}
+var current_house
 var house_size = 6
 var currentDay = 0
 var rooms_load = [
@@ -24,3 +25,8 @@ var rooms_load = [
 	"res://Rooms(Resources)/Medium Rooms/Resources/Swamp.tres",
 	"res://Rooms(Resources)/LargeRooms/Resources/Ocean.tres"
 	]
+var house_upgrades_load = [
+	"res://Houses(Resources)/SmallHouse.tres",
+	"res://Houses(Resources)/MediumHouse.tres",
+	"res://Houses(Resources)/LargeHouse.tres"
+]

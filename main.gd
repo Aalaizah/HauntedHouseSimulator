@@ -3,7 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
-var startingScore: int = 5000
+var startingScore: int = 1000
 var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -49,9 +49,12 @@ func new_game():
 		$CloseStore.text = "Open Store"
 		$Hud/HUD/StoreInventory.hide()
 		$Hud/HUD/HouseGrid.show()
+		$HouseStore.hide()
 	else:
 		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
+		$Hud/HUD/HouseUpgradeInventory.hide()
+		$HouseStore.hide()
 		store_open = true
 		$NewDay.hide()
 	
@@ -124,12 +127,14 @@ func _on_close_store_pressed() -> void:
 		$Hud/HUD/StoreInventory.hide()
 		$Hud/HUD/HouseGrid.show()
 		$NewDay.show()
+		$HouseStore.show()
 	else:
 		store_open = true
 		$CloseStore.text = "Close Store"
 		$Hud/HUD/StoreInventory.show()
 		$Hud/HUD/HouseGrid.hide()
 		$NewDay.hide()
+		$HouseStore.hide()
 
 
 func _on_audio_setting_toggled(toggled_on: bool) -> void:
@@ -137,3 +142,20 @@ func _on_audio_setting_toggled(toggled_on: bool) -> void:
 		$MusicPlayer.stream_paused = false
 	else:
 		$MusicPlayer.stream_paused = true
+
+
+func _on_house_store_pressed() -> void:
+	if store_open == true:
+		store_open = false
+		$HouseStore.text = "Open House Store"
+		$Hud/HUD/HouseUpgradeInventory.hide()
+		$Hud/HUD/HouseGrid.show()
+		$NewDay.show()
+		$CloseStore.show()
+	else:
+		store_open = true
+		$HouseStore.text = "Close House Store"
+		$Hud/HUD/HouseUpgradeInventory.show()
+		$Hud/HUD/HouseGrid.hide()
+		$NewDay.hide()
+		$CloseStore.hide()

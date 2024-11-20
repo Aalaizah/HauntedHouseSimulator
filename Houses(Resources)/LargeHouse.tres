@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="HouseData" load_steps=3 format=3 uid="uid://b31kh0r20m5yu"]
+
+[ext_resource type="Texture2D" uid="uid://dxci3e8w55uf6" path="res://Rooms(Resources)/Small Rooms/Sprites/WitchIcon.png" id="1_jxsdp"]
+[ext_resource type="Script" path="res://Houses(Resources)/HouseData.gd" id="2_dvbgv"]
+
+[resource]
+script = ExtResource("2_dvbgv")
+house_size = 10
+name = "Upgrade 2"
+description = "2 more rooms!"
+icon = ExtResource("1_jxsdp")
+price = 5000
+house_columns = 5

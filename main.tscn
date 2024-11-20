@@ -106,8 +106,18 @@ offset_bottom = 63.0
 button_pressed = true
 text = "Sound"
 
+[node name="HouseStore" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 1174.0
+offset_top = 778.0
+offset_right = 1372.0
+offset_bottom = 860.0
+text = "Upgrade House
+"
+
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="pressed" from="NewDay" to="." method="_on_new_day_pressed"]
 [connection signal="pressed" from="CloseStore" to="." method="_on_close_store_pressed"]
 [connection signal="toggled" from="AudioSetting" to="." method="_on_audio_setting_toggled"]
+[connection signal="pressed" from="HouseStore" to="." method="_on_house_store_pressed"]

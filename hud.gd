@@ -1,29 +1,53 @@
 extends CanvasLayer
 
-var HouseSize = Global.house_size
 var roomsLoad = Global.rooms_load
+var houseUpgradesLoad = Global.house_upgrades_load
 
 func _ready() -> void:
+	load_rooms()
+	load_house_upgrades()
+	setup_house_store()
 	setup_house_grid()
-	setup_house()
 	setup_room_store()
 		
 	EventBus.room_bought.connect(add_room_to_player_inventory)
 	EventBus.large_room_installed.connect(large_room_installed)
 	EventBus.large_room_removed.connect(large_room_removed)
+	EventBus.house_bought.connect(house_upgraded)
 	
+func load_rooms():
+	for i in roomsLoad.size():
+		var item := RoomItem.new()
+		item.init(load(roomsLoad[i]))
+		item.name = item.room_name
+		Global.store_inventory[item.name] = item
+		Global.all_rooms[item.name] = item
+	
+func load_house_upgrades():
+	for i in houseUpgradesLoad.size():
+		var item := HouseUpgradeItem.new()
+		item.init(load(houseUpgradesLoad[i]))
+		Global.house_inventory[item.data.name] = item
+
 func setup_house_grid():
 	var House_Width = Global.small_room_size * (Global.house_size / 2.0)
 	var House_Height = Global.small_room_size * (Global.house_size / 3.0)
 	%HouseGrid.size.x = House_Width
 	%HouseGrid.size.y = House_Height
+	setup_house()
+	
+func clear_house():
+	for slot in %HouseGrid.get_children():
+		%HouseGrid.remove_child(slot)
+		slot.queue_free()
 	
 func setup_house():
+	clear_house()
 	var houseLocX = 0
 	var houseLocY = 0
 	var columnsFrom0 = (Global.house_size / 2.0) - 1
-	%HouseGrid.columns = Global.house_size / 2.0
-	for i in HouseSize:
+	%HouseGrid.columns = Global.current_house.data.house_columns
+	for i in Global.house_size:
 		var slot := HouseSlot.new()
 		slot.init(RoomData.Room_Size.SMALL, Vector2(200, 200))
 		slot.slot_loc = Vector2(houseLocX, houseLocY)
@@ -35,13 +59,6 @@ func setup_house():
 			houseLocX += 1
 		%HouseGrid.add_child(slot)
 		
-	for i in roomsLoad.size():
-		var item := RoomItem.new()
-		item.init(load(roomsLoad[i]))
-		item.name = item.room_name
-		Global.store_inventory[item.name] = item
-		Global.all_rooms[item.name] = item
-		
 	%HouseGrid.hide()
 	
 func setup_room_store():
@@ -49,12 +66,23 @@ func setup_room_store():
 		var item = StoreItem.new()
 		var panel = PanelContainer.new()
 		item.init(Global.store_inventory[i].data)
-		panel.add_child(item)
-		panel.name = item.data.room_name
-		%StoreInventory.add_child(panel)
+		if(item.data is RoomData):
+			panel.add_child(item)
+			panel.name = item.data.room_name
+			%StoreInventory.add_child(panel)
 	
 func setup_house_store():
-	pass
+	for i in Global.house_inventory:
+		var item = StoreItem.new()
+		var panel = PanelContainer.new()
+		item.init(Global.house_inventory[i].data)
+		if(item.data is HouseData):
+			if(item.data.name == "Starter"):
+				Global.current_house = item
+			else:
+				panel.add_child(item)
+				panel.name = item.data.name
+				%HouseUpgradeInventory.add_child(panel)
 	
 func add_inventory_slot():
 	var inventorySlot := RoomInventory.new()
@@ -165,3 +193,11 @@ func large_room_installed(room, slot):
 			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel3.texture = room_part_2
 			slot_to_hide.add_child(panel3)
+
+func house_upgraded(house):
+	Global.current_house = Global.house_inventory[house.name]
+	Global.house_size = house.house_size
+	Global.score -= house.price
+	setup_house_grid()
+	%HouseUpgradeInventory.get_node(house.name).queue_free()
+	Global.house_inventory.erase(house.name)

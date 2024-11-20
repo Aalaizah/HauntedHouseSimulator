@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="HouseData" load_steps=2 format=3 uid="uid://ce2s6cakhofwy"]
+[gd_resource type="Resource" script_class="HouseData" load_steps=2 format=3 uid="uid://baveo8apitvbb"]
 
 [ext_resource type="Script" path="res://Houses(Resources)/HouseData.gd" id="1_8de1y"]
 
 [resource]
 script = ExtResource("1_8de1y")
 house_size = 0
-name = ""
+name = "Starter"
 description = ""
+price = 0
+house_columns = 3
