@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://hud.gd" id="1_13t0y"]
 
-[node name="Hud" type="Node"]
+[node name="Hud" type="Node" groups=["Persist"]]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = -1

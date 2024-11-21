@@ -159,3 +159,11 @@ func _on_house_store_pressed() -> void:
 		$Hud/HUD/HouseGrid.hide()
 		$NewDay.hide()
 		$CloseStore.hide()
+
+
+func _on_button_pressed() -> void:
+	Global.save_game()
+
+
+func _on_button_2_pressed() -> void:
+	Global.load_game()
