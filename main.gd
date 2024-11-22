@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
 	get_node("DayTimer/DayTimerProgress").value = timer.wait_time - timer.time_left
 	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
-		$Hud/HUD/RoomScroll/RoomInventory.show()
+		$Hud/HUD/RoomScroll.show()
 		$NewDay.show()
 		$CloseStore.show()
 		get_node("DayTimer/DayTimerProgress").hide()
@@ -47,7 +47,7 @@ func new_game():
 				Global.current_rooms[room_to_add.name] = room_to_add
 		store_open = false
 		$CloseStore.text = "Open Store"
-		$Hud/HUD/StoreInventory.hide()
+		$Hud/HUD/StoreInventoryScroll.hide()
 		$Hud/HUD/HouseGrid.show()
 		$HouseStore.hide()
 	else:
@@ -111,7 +111,7 @@ func _on_new_day_pressed() -> void:
 		get_node("Score").show()
 		get_node("DayTimer/DayTimerLabel").show()
 		get_node("DayTimer/DayTimerProgress").show()
-		$Hud/HUD/RoomScroll/RoomInventory.hide()
+		$Hud/HUD/RoomScroll.hide()
 		$GuestTimer.wait_time = randf_range(2, 6)
 		$GuestTimer.start()
 		$DayTimer.one_shot = true
@@ -124,14 +124,14 @@ func _on_close_store_pressed() -> void:
 	if store_open == true:
 		store_open = false
 		$CloseStore.text = "Open Store"
-		$Hud/HUD/StoreInventory.hide()
+		$Hud/HUD/StoreInventoryScroll.hide()
 		$Hud/HUD/HouseGrid.show()
 		$NewDay.show()
 		$HouseStore.show()
 	else:
 		store_open = true
 		$CloseStore.text = "Close Store"
-		$Hud/HUD/StoreInventory.show()
+		$Hud/HUD/StoreInventoryScroll.show()
 		$Hud/HUD/HouseGrid.hide()
 		$NewDay.hide()
 		$HouseStore.hide()
@@ -162,8 +162,31 @@ func _on_house_store_pressed() -> void:
 
 
 func _on_button_pressed() -> void:
-	Global.save_game()
+	save_game()
 
 
 func _on_button_2_pressed() -> void:
-	Global.load_game()
+	load_game()
+
+
+func save_game():
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
+	var save_data = Global.save()
+	save_data["house_data"] = $Hud/HUD.save_house()
+	var json_string = JSON.stringify(save_data)
+	save_file.store_line(json_string)
+
+func load_game():
+	if not FileAccess.file_exists("user://savegame.save"):
+		return
+		
+	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
+		
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		if not parse_result == OK:
+			print("JSON Parse Error: ", json.get_error_message(), "in ", json_string, " at line ", json.get_error_line())
+			continue
+		Global.load_game(json)

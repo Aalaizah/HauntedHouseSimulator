@@ -14,6 +14,7 @@ func _ready() -> void:
 	EventBus.large_room_installed.connect(large_room_installed)
 	EventBus.large_room_removed.connect(large_room_removed)
 	EventBus.house_bought.connect(house_upgraded)
+	EventBus.load_house.connect(load_house)
 	
 func load_rooms():
 	for i in roomsLoad.size():
@@ -71,6 +72,18 @@ func setup_house():
 		
 	%HouseGrid.hide()
 	
+func save_house():
+	var house = %HouseGrid.get_children()
+	var house_data = []
+	for slot in house:
+		if slot.get_child_count() > 0:
+			house_data.append(slot.get_child(0).name)
+		pass
+	return house_data
+
+func load_house(house_data):
+	print("yea we loaded")
+
 func setup_room_store():
 	for i in Global.store_inventory:
 		var item = StoreItem.new()

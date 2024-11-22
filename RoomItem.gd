@@ -4,7 +4,6 @@ extends TextureRect
 @export var data: RoomData
 var room_name: String
 var current_loc: Vector2
-var in_house: bool = false
 
 func init(d: RoomData) -> void:
 	data = d

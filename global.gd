@@ -33,30 +33,26 @@ var house_upgrades_load = [
 
 func save():
 	var save_dict = {
-		"score": score
+		"score": score,
+		"current_house": current_house.data.name,
+		"currentDay": currentDay,
+		"player_inventory": inventory_rooms.keys()
 	}
 	return save_dict
 
-func save_game():
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
-	var save_data = save()
-	var json_string = JSON.stringify(save_data)
-	save_file.store_line(json_string)
 
-func load_game():
-	if not FileAccess.file_exists("user://savegame.save"):
-		return
-		
-	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
-	while save_file.get_position() < save_file.get_length():
-		var json_string = save_file.get_line()
-		
-		var json = JSON.new()
-		var parse_result = json.parse(json_string)
-		if not parse_result == OK:
-			print("JSON Parse Error: ", json.get_error_message(), "in ", json_string, " at line ", json.get_error_line())
-			continue
+# current implementation load game must come after everything else is loaded
+func load_game(json):
+	
 			
 		var save_data = json.data
 		for i in save_data.keys():
+			if i == "player_inventory":
+				for room in save_data[i]:
+					inventory_rooms[room] = store_inventory[room]
+					store_inventory.erase(room)
+				continue
+			elif i == "house_data":
+				EventBus.load_house.emit(save_data[i])
+				continue
 			set(i, save_data[i])
