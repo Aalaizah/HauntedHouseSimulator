@@ -95,6 +95,7 @@ text = "Current Score"
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamPlaylist_jwtc6")
+autoplay = true
 
 [node name="AudioSetting" type="CheckBox" parent="."]
 unique_name_in_owner = true

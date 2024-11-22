@@ -40,8 +40,8 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		Global.current_rooms[data.name] = data
 	data.reparent(self)
 	if data.data.room_size != 0:
-		#if data.in_house == true:
-			#EventBus.large_room_removed.emit(data)
+		if data.in_house == true:
+			EventBus.large_room_removed.emit(data)
 		EventBus.large_room_installed.emit(data, self.slot_loc)
 	if data.get_child_count() > 0:
 		for child in data.get_children():

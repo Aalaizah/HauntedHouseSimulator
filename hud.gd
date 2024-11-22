@@ -148,6 +148,7 @@ func update_inventory_after_purchase(room):
 				EventBus.successful_purchase.emit(room_to_add)
 				
 func large_room_removed(room):
+	room.in_house = false
 	match room.data.room_size:
 		1:
 			var slot_to_hide = room.current_loc
@@ -170,7 +171,6 @@ func large_room_removed(room):
 func large_room_installed(room, slot):
 	match room.data.room_size:
 		1:
-			room.in_house = true
 			room.current_loc = slot
 			var panel = TextureRect.new()
 			var room_part_1 = room.data.atlasTexture.duplicate()
@@ -180,11 +180,9 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
-			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel.texture = room_part_2
 			slot_to_hide.add_child(panel)
 		2:
-			room.in_house = true
 			room.current_loc = slot
 			var panel = TextureRect.new()
 			var room_part_1 = room.data.atlasTexture.duplicate()
@@ -194,11 +192,9 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.y += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
-			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel.texture = room_part_2
 			slot_to_hide.add_child(panel)
 		3:
-			room.in_house = true
 			room.current_loc = slot
 			var panel1 = TextureRect.new()
 			var panel2 = TextureRect.new()
@@ -214,19 +210,17 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
-			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel1.texture = room_part_3
 			slot_to_hide.add_child(panel1)
 			slot.y += 1
 			slot_to_hide = %HouseGrid.get_node(str(slot))
-			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel2.texture = room_part_4
 			slot_to_hide.add_child(panel2)
 			slot.x -= 1
 			slot_to_hide = %HouseGrid.get_node(str(slot))
-			Global.hidden_slots[slot_to_hide.name] = slot_to_hide
 			panel3.texture = room_part_2
 			slot_to_hide.add_child(panel3)
+	room.in_house = true
 
 func house_upgraded(house):
 	Global.current_house = Global.house_inventory[house.name]
