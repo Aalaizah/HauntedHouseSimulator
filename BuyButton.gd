@@ -11,7 +11,7 @@ func _ready() -> void:
 	pressed.connect(_on_button_pressed)
 
 func _on_button_pressed():
-	if data is RoomData:
-		EventBus.room_bought.emit(data.room_name)
-	elif data is HouseData:
+	if data is RoomData and (Global.score > data.price):
+		EventBus.room_bought.emit(data.room_name, data.price)
+	elif data is HouseData and (Global.score > data.price):
 		EventBus.house_bought.emit(data)

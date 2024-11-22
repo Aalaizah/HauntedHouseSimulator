@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_8de1y")
-house_size = 0
+house_size = 6
 name = "Starter"
 description = ""
 price = 0

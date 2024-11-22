@@ -11,6 +11,7 @@ func _ready() -> void:
 	setup_room_store()
 		
 	EventBus.room_bought.connect(add_room_to_player_inventory)
+	EventBus.update_inventory.connect(add_room_to_player_inventory)
 	EventBus.large_room_installed.connect(large_room_installed)
 	EventBus.large_room_removed.connect(large_room_removed)
 	EventBus.house_bought.connect(house_upgraded)
@@ -74,15 +75,26 @@ func setup_house():
 	
 func save_house():
 	var house = %HouseGrid.get_children()
-	var house_data = []
+	var house_data = {}
 	for slot in house:
 		if slot.get_child_count() > 0:
-			house_data.append(slot.get_child(0).name)
-		pass
+			house_data[slot.name] = slot.get_child(0).name
 	return house_data
 
 func load_house(house_data):
-	print("yea we loaded")
+	setup_house()
+	var house = get_node("HouseGrid").get_children()
+	var inv = get_node("RoomScroll/RoomInventory").get_children()
+	for room in house_data:
+		var houseSlotIndex
+		for slot in house:
+			if slot.name == room:
+				houseSlotIndex = house.find(slot)
+				for item in inv:
+					if item.name == house_data[room]:
+						if item.get_child(0).get_child_count() > 0:
+							item.get_child(0).get_child(0).queue_free()
+						item.get_child(0).reparent(slot)
 
 func setup_room_store():
 	for i in Global.store_inventory:
@@ -102,6 +114,7 @@ func setup_house_store():
 		if(item.data is HouseData):
 			if(item.data.name == "Starter"):
 				Global.current_house = item
+				Global.house_size = Global.current_house.data.house_size
 			else:
 				panel.add_child(item)
 				panel.name = item.data.name
@@ -112,10 +125,8 @@ func add_inventory_slot():
 	inventorySlot.init(Vector2(200, 50))
 	%RoomInventory.add_child(inventorySlot)
 
-func add_room_to_player_inventory(room_name: String):
-	var purchasePrice = Global.store_inventory[room_name].data.price
-	if (Global.score > purchasePrice 
-	and !Global.inventory_rooms.has(room_name)):
+func add_room_to_player_inventory(room_name: String, purchasePrice: int):
+	if !Global.inventory_rooms.has(room_name):
 		Global.inventory_rooms[room_name] = Global.store_inventory[room_name]
 		Global.score -= purchasePrice
 		update_store(room_name)

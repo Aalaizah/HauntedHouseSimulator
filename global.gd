@@ -43,16 +43,24 @@ func save():
 
 # current implementation load game must come after everything else is loaded
 func load_game(json):
-	
-			
-		var save_data = json.data
-		for i in save_data.keys():
-			if i == "player_inventory":
-				for room in save_data[i]:
-					inventory_rooms[room] = store_inventory[room]
-					store_inventory.erase(room)
-				continue
-			elif i == "house_data":
-				EventBus.load_house.emit(save_data[i])
-				continue
+	var save_data = json.data
+	for i in save_data.keys():
+		if i == "player_inventory":
+			for room in save_data[i]:
+				EventBus.update_inventory.emit(room, 0)
+			continue
+		elif i == "house_data":
+			var rooms = save_data[i]
+			for room in rooms:
+				#print(rooms[room])
+				var room_name = rooms[room]
+				current_rooms[room_name] = store_inventory[room_name]
+				EventBus.update_inventory.emit(room_name, 0)
+				store_inventory.erase(room_name)
+			EventBus.load_house.emit(save_data[i])
+			continue
+		elif i == "current_house":
+			current_house = house_inventory[save_data[i]]
+			house_size = current_house.data.house_size
+		else:
 			set(i, save_data[i])

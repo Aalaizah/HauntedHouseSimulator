@@ -3,7 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
-var startingScore: int = 1000
+var startingScore: int = 5000
 var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -190,3 +190,6 @@ func load_game():
 			print("JSON Parse Error: ", json.get_error_message(), "in ", json_string, " at line ", json.get_error_line())
 			continue
 		Global.load_game(json)
+	$Hud/HUD/StoreInventoryScroll.hide()
+	$Hud/HUD/HouseGrid.show()
+	$Hud/HUD/RoomScroll.show()
