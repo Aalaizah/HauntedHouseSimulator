@@ -46,6 +46,8 @@ func clear_house():
 			var inventory = get_node("RoomScroll/RoomInventory")
 			for place in inventory.get_children():
 				if place.get_child_count() == 0:
+					room.in_house = false
+					room.texture = room.data.icon
 					room.reparent(place)
 					Global.inventory_rooms[room.name] = room
 					Global.current_rooms.erase(room.name)
@@ -86,15 +88,15 @@ func load_house(house_data):
 	var house = get_node("HouseGrid").get_children()
 	var inv = get_node("RoomScroll/RoomInventory").get_children()
 	for room in house_data:
-		var houseSlotIndex
 		for slot in house:
 			if slot.name == room:
-				houseSlotIndex = house.find(slot)
 				for item in inv:
 					if item.name == house_data[room]:
 						if item.get_child(0).get_child_count() > 0:
 							item.get_child(0).get_child(0).queue_free()
+						var item_to_move = item.get_child(0)
 						item.get_child(0).reparent(slot)
+						large_room_installed(item_to_move, str_to_var("Vector2" + room))
 
 func setup_room_store():
 	for i in Global.store_inventory:
@@ -126,7 +128,7 @@ func add_inventory_slot():
 	%RoomInventory.add_child(inventorySlot)
 
 func add_room_to_player_inventory(room_name: String, purchasePrice: int):
-	if !Global.inventory_rooms.has(room_name):
+	if !Global.inventory_rooms.has(room_name) and Global.store_inventory.has(room_name):
 		Global.inventory_rooms[room_name] = Global.store_inventory[room_name]
 		Global.score -= purchasePrice
 		update_store(room_name)
@@ -180,6 +182,8 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
+			var panel_name = room.name
+			panel.name = panel_name + "2"
 			panel.texture = room_part_2
 			slot_to_hide.add_child(panel)
 		2:
@@ -192,6 +196,8 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.y += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
+			var panel_name = room.name
+			panel.name = panel_name + "2"
 			panel.texture = room_part_2
 			slot_to_hide.add_child(panel)
 		3:
@@ -210,6 +216,8 @@ func large_room_installed(room, slot):
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
+			var panel_name = room.name
+			panel1.name = panel_name + "3"
 			panel1.texture = room_part_3
 			slot_to_hide.add_child(panel1)
 			slot.y += 1

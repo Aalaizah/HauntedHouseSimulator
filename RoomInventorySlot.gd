@@ -32,7 +32,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	add_label(data)
 	
 func add_label(data: Variant):
-	if data is RoomItem:
+	if data is RoomItem and data.get_child_count() == 0:
 		var data_label = Label.new()
 		data_label.text = data.room_name
 		data_label.global_position.x = Global.icon_size + 10

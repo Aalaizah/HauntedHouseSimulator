@@ -54,7 +54,8 @@ func load_game(json):
 			for room in rooms:
 				#print(rooms[room])
 				var room_name = rooms[room]
-				current_rooms[room_name] = store_inventory[room_name]
+				if store_inventory.has(room_name):
+					current_rooms[room_name] = store_inventory[room_name]
 				EventBus.update_inventory.emit(room_name, 0)
 				store_inventory.erase(room_name)
 			EventBus.load_house.emit(save_data[i])

@@ -179,7 +179,7 @@ func save_game():
 func load_game():
 	if not FileAccess.file_exists("user://savegame.save"):
 		return
-		
+	new_game()	
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.READ)
 	while save_file.get_position() < save_file.get_length():
 		var json_string = save_file.get_line()
