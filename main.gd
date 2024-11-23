@@ -3,7 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
-var startingScore: int = 5000
+var startingScore: int = 1000
 var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -28,6 +28,7 @@ func _process(delta: float) -> void:
 		$Hud/HUD/RoomScroll.show()
 		$NewDay.show()
 		$CloseStore.show()
+		$HouseStore.show()
 		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
 		day_ended = true
@@ -35,7 +36,6 @@ func _process(delta: float) -> void:
 func new_game():
 	Global.score = startingScore
 	day_ended = false
-	new_guest_path()
 	get_node("DayTimer/DayTimerProgress").max_value = get_node("DayTimer").wait_time
 	if testingDay:
 		var rooms = Global.all_rooms.keys()
@@ -100,7 +100,9 @@ func _on_day_timer_timeout() -> void:
 
 
 func _on_new_day_pressed() -> void:
+	new_guest_path()
 	$CloseStore.hide()
+	$HouseStore.hide()
 	get_node("NewDay").hide()
 	var day_over = $DayTimer.is_stopped()
 	var current_rooms = 0
@@ -190,6 +192,9 @@ func load_game():
 			print("JSON Parse Error: ", json.get_error_message(), "in ", json_string, " at line ", json.get_error_line())
 			continue
 		Global.load_game(json)
+	store_open = false
+	$CloseStore.text = "Open Store"
 	$Hud/HUD/StoreInventoryScroll.hide()
 	$Hud/HUD/HouseGrid.show()
 	$Hud/HUD/RoomScroll.show()
+	$NewDay.show()

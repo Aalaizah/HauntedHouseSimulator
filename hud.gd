@@ -46,12 +46,13 @@ func clear_house():
 			var inventory = get_node("RoomScroll/RoomInventory")
 			for place in inventory.get_children():
 				if place.get_child_count() == 0:
-					room.in_house = false
-					room.texture = room.data.icon
-					room.reparent(place)
-					Global.inventory_rooms[room.name] = room
-					Global.current_rooms.erase(room.name)
-					place.add_label(room)
+					if "data" in room:
+						room.in_house = false
+						room.texture = room.data.icon
+						room.reparent(place)
+						Global.inventory_rooms[room.name] = room
+						Global.current_rooms.erase(room.name)
+						place.add_label(room)
 		%HouseGrid.remove_child(slot)
 		slot.queue_free()
 	
