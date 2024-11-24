@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d16vy5ixp0s7c"]
+[gd_scene load_steps=12 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
 [ext_resource type="Texture2D" uid="uid://b1hcqoev0iwao" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanIcon.png" id="3_dvily"]
 [ext_resource type="AudioStream" uid="uid://cpk5finy8hspf" path="res://Music/Enemies, Questionable Allies, and Tests.wav" id="4_t2ody"]
+[ext_resource type="Texture2D" uid="uid://c2p0cja1riypu" path="res://clipped_02.png" id="6_cp7gf"]
 [ext_resource type="PackedScene" uid="uid://bb3xhe2hjaw1p" path="res://hud.tscn" id="6_epp4g"]
+[ext_resource type="Texture2D" uid="uid://bswj66yxruhc2" path="res://clipped_03.png" id="7_w2fvv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_heahr"]
 font_size = 30
@@ -57,19 +59,39 @@ texture_progress = ExtResource("3_dvily")
 
 [node name="NewDay" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1360.0
-offset_top = 679.0
-offset_right = 1561.0
-offset_bottom = 762.0
+offset_left = 1384.0
+offset_top = 896.0
+offset_right = 1585.0
+offset_bottom = 976.0
 text = "New Day"
 
 [node name="CloseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1408.0
-offset_top = 781.0
-offset_right = 1533.0
-offset_bottom = 858.0
+offset_left = 1240.0
+offset_top = 896.0
+offset_right = 1365.0
+offset_bottom = 976.0
 text = "Close Store"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(160, 656)
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 784.0
+texture = ExtResource("6_cp7gf")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(160, 656)
+offset_left = 1168.0
+offset_top = 128.0
+offset_right = 1328.0
+offset_bottom = 784.0
+texture = ExtResource("7_w2fvv")
+expand_mode = 5
 
 [node name="GuestPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jjcds")
@@ -108,22 +130,25 @@ text = "Sound"
 
 [node name="HouseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1174.0
-offset_top = 778.0
-offset_right = 1372.0
-offset_bottom = 860.0
+offset_left = 1024.0
+offset_top = 896.0
+offset_right = 1222.0
+offset_bottom = 976.0
 text = "Upgrade House
 "
 
 [node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+offset_left = 64.0
+offset_top = 896.0
+offset_right = 200.0
+offset_bottom = 976.0
 text = "Save"
 
 [node name="Button2" type="Button" parent="."]
-offset_top = 40.0
-offset_right = 46.0
-offset_bottom = 71.0
+offset_left = 224.0
+offset_top = 896.0
+offset_right = 360.0
+offset_bottom = 976.0
 text = "Load"
 
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]

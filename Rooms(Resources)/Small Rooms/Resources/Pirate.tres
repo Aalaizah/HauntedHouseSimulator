@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="RoomData" load_steps=4 format=3 uid="uid://dvlhoteerk2u6"]
 
+[ext_resource type="Texture2D" uid="uid://cjj3oup2msb8" path="res://Rooms(Resources)/Small Rooms/Sprites/Pirate.png" id="1_hnhur"]
 [ext_resource type="Texture2D" uid="uid://tsydddc08gpi" path="res://Rooms(Resources)/Small Rooms/Sprites/GlurpoIcon.png" id="1_wnxs5"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="2_t63a8"]
-[ext_resource type="Texture2D" uid="uid://b78krfoaw0bcu" path="res://Rooms(Resources)/Small Rooms/Sprites/GlurpoTexture.png" id="3_tv0uw"]
 
 [resource]
 script = ExtResource("2_t63a8")
 room_size = 0
 room_name = "Pirate"
 description = ""
-texture = ExtResource("3_tv0uw")
+texture = ExtResource("1_hnhur")
 icon = ExtResource("1_wnxs5")
 price = 150

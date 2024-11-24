@@ -10,10 +10,10 @@ script = ExtResource("1_13t0y")
 
 [node name="HouseGrid" type="GridContainer" parent="HUD"]
 unique_name_in_owner = true
-offset_left = 64.0
-offset_top = 256.0
-offset_right = 64.0
-offset_bottom = 256.0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 192.0
+offset_bottom = 128.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3

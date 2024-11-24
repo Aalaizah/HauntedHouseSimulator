@@ -1,12 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkqc0pcd6h1g"]
+[gd_scene load_steps=13 format=3 uid="uid://bkqc0pcd6h1g"]
 
 [ext_resource type="Script" path="res://guest.gd" id="1_ik1tu"]
 [ext_resource type="Texture2D" uid="uid://bx31ov3nraugx" path="res://Guests/StickGuest/Layer.PNG" id="2_0ntc2"]
 [ext_resource type="Texture2D" uid="uid://crionpjssu78f" path="res://Guests/StickGuest/Paint Layer 3(pasted).PNG" id="3_okaua"]
+[ext_resource type="Texture2D" uid="uid://d880auotn7vx" path="res://SpookyAssets/Animated_48x48/Characters_48x48/Main_characters_48x48/Character_F_2_sheet_complete_48x48.png" id="3_w7vnr"]
 [ext_resource type="Texture2D" uid="uid://yibepnj2ob1h" path="res://Guests/StickGuest/Background.PNG" id="4_40cd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6dpqr"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(0, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpimf"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(48, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7voxs"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(96, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7ycs"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(144, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wehvj"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(192, 192, 48, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jovne"]
+atlas = ExtResource("3_w7vnr")
+region = Rect2(240, 192, 48, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3k2u6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6dpqr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpimf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7voxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7ycs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wehvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jovne")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_0ntc2")
@@ -21,7 +69,7 @@ animations = [{
 "texture": ExtResource("3_okaua")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk-stick",
 "speed": 5.0
 }]
 
@@ -29,7 +77,5 @@ animations = [{
 script = ExtResource("1_ik1tu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_3k2u6")
 animation = &"walk"
-frame_progress = 0.610507

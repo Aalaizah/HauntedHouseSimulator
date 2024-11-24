@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://b44xkgax0665t" path="res://Rooms(Resources)/Small Rooms/Sprites/ClassIcon.png" id="1_la3q2"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_wfu2g"]
-[ext_resource type="Texture2D" uid="uid://dow4j3wpwmjoh" path="res://Rooms(Resources)/Small Rooms/Sprites/ClassTexture.png" id="3_8lj1u"]
+[ext_resource type="Texture2D" uid="uid://b1py4df1p0lcx" path="res://Rooms(Resources)/Small Rooms/Sprites/Class.png" id="3_ewsop"]
 
 [resource]
 script = ExtResource("1_wfu2g")
 room_size = 0
 room_name = "Classroom"
 description = ""
-texture = ExtResource("3_8lj1u")
+texture = ExtResource("3_ewsop")
 icon = ExtResource("1_la3q2")
 price = 150

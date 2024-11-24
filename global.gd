@@ -1,9 +1,10 @@
 extends Node
 enum States {MAIN_MENU, STORE_OPEN, DAY_RUNNING, MODIFYING_HOUSE}
 enum StoreStates {NO_STORE_AVAILABLE, ROOM_STORE_AVAILABLE, HOUSE_STORE_AVAILABLE}
+enum TestingStates {NOT_TESTING, TESTING_DAY, TESTING_ROOM_STORE, TESTING_HOUSE_STORE}
 var state: States = States.STORE_OPEN
 var store_state = StoreStates.NO_STORE_AVAILABLE
-var small_room_size = 200
+var small_room_size = 328
 var icon_size = 50
 var score = 0
 var all_rooms = {}

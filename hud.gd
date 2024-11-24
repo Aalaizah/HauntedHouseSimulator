@@ -62,9 +62,10 @@ func setup_house():
 	var houseLocY = 0
 	var columnsFrom0 = (Global.house_size / 2.0) - 1
 	%HouseGrid.columns = Global.current_house.data.house_columns
+	var min_size = Vector2(Global.small_room_size, Global.small_room_size)
 	for i in Global.house_size:
 		var slot := HouseSlot.new()
-		slot.init(RoomData.Room_Size.SMALL, Vector2(200, 200))
+		slot.init(RoomData.Room_Size.SMALL, min_size)
 		slot.slot_loc = Vector2(houseLocX, houseLocY)
 		slot.name = str(slot.slot_loc)
 		if i >= (columnsFrom0):
