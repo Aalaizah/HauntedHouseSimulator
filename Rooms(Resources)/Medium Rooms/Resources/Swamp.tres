@@ -1,19 +1,17 @@
 [gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3 uid="uid://c74vjj2v4pnu3"]
 
+[ext_resource type="Texture2D" uid="uid://d3awrtgxkpspn" path="res://Rooms(Resources)/Medium Rooms/Sprites/Swamp.png" id="1_0d8sp"]
 [ext_resource type="Texture2D" uid="uid://b24b4vieh28d8" path="res://Rooms(Resources)/Medium Rooms/Sprites/SwampIcon.png" id="1_l236p"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="2_a80b8"]
-[ext_resource type="Texture2D" uid="uid://ifeyyfaey2p1" path="res://Rooms(Resources)/Medium Rooms/Sprites/SwampTexture.png" id="3_064u1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w6rf1"]
-atlas = ExtResource("3_064u1")
-region = Rect2(0, 0, 200, 200)
+[sub_resource type="AtlasTexture" id="AtlasTexture_qelib"]
+atlas = ExtResource("1_0d8sp")
 
 [resource]
 script = ExtResource("2_a80b8")
-room_size = 2
+room_size = 1
 room_name = "Swamp"
 description = "And in the morning I'm making waffles"
-texture = ExtResource("3_064u1")
-atlasTexture = SubResource("AtlasTexture_w6rf1")
+atlasTexture = SubResource("AtlasTexture_qelib")
 icon = ExtResource("1_l236p")
 price = 200

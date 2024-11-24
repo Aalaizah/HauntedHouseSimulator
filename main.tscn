@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d16vy5ixp0s7c"]
+[gd_scene load_steps=16 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2p0cja1riypu" path="res://clipped_02.png" id="6_cp7gf"]
 [ext_resource type="PackedScene" uid="uid://bb3xhe2hjaw1p" path="res://hud.tscn" id="6_epp4g"]
 [ext_resource type="Texture2D" uid="uid://bswj66yxruhc2" path="res://clipped_03.png" id="7_w2fvv"]
+[ext_resource type="Texture2D" uid="uid://cnr3waxxn4gum" path="res://MenuShot.png" id="8_jkc52"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_heahr"]
 font_size = 30
@@ -23,6 +24,14 @@ font_size = 30
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jwtc6"]
 stream_count = 1
 stream_0 = ExtResource("4_t2ody")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_86ta5"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imlyd"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_t36k3"]
+allow_unpress = true
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mvq0q")
@@ -59,18 +68,18 @@ texture_progress = ExtResource("3_dvily")
 
 [node name="NewDay" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1384.0
-offset_top = 896.0
-offset_right = 1585.0
-offset_bottom = 976.0
+offset_left = 1696.0
+offset_top = 880.0
+offset_right = 1897.0
+offset_bottom = 960.0
 text = "New Day"
 
 [node name="CloseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1240.0
-offset_top = 896.0
-offset_right = 1365.0
-offset_bottom = 976.0
+offset_left = 1560.0
+offset_top = 880.0
+offset_right = 1685.0
+offset_bottom = 960.0
 text = "Close Store"
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -125,31 +134,95 @@ offset_left = 1493.0
 offset_top = 29.0
 offset_right = 1570.0
 offset_bottom = 63.0
-button_pressed = true
+button_group = SubResource("ButtonGroup_86ta5")
 text = "Sound"
 
 [node name="HouseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1024.0
-offset_top = 896.0
-offset_right = 1222.0
-offset_bottom = 976.0
+offset_left = 1352.0
+offset_top = 880.0
+offset_right = 1550.0
+offset_bottom = 960.0
 text = "Upgrade House
 "
 
-[node name="Button" type="Button" parent="."]
-offset_left = 64.0
-offset_top = 896.0
-offset_right = 200.0
-offset_bottom = 976.0
+[node name="SaveButton" type="Button" parent="."]
+offset_left = 704.0
+offset_top = 880.0
+offset_right = 840.0
+offset_bottom = 960.0
 text = "Save"
 
-[node name="Button2" type="Button" parent="."]
-offset_left = 224.0
-offset_top = 896.0
-offset_right = 360.0
-offset_bottom = 976.0
+[node name="LoadButton" type="Button" parent="."]
+offset_left = 848.0
+offset_top = 880.0
+offset_right = 984.0
+offset_bottom = 960.0
 text = "Load"
+
+[node name="MainMenu" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1088.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_imlyd")
+
+[node name="GameTitle" type="Label" parent="MainMenu"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 88.0
+offset_right = 1544.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 75
+text = "Mrs. Moneybags Haunted House"
+
+[node name="NewGame" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 328.0
+offset_right = 1472.0
+offset_bottom = 408.0
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 424.0
+offset_right = 1472.0
+offset_bottom = 504.0
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="MainMenu"]
+visible = false
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 520.0
+offset_right = 1472.0
+offset_bottom = 600.0
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 520.0
+offset_right = 1472.0
+offset_bottom = 600.0
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 296.0
+offset_right = 1238.0
+offset_bottom = 870.0
+texture = ExtResource("8_jkc52")
+
+[node name="AudioSettingMainMenu" type="CheckBox" parent="MainMenu"]
+offset_left = 1493.0
+offset_top = 29.0
+offset_right = 1570.0
+offset_bottom = 63.0
+button_pressed = true
+button_group = SubResource("ButtonGroup_t36k3")
+text = "Sound"
 
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
@@ -157,5 +230,9 @@ text = "Load"
 [connection signal="pressed" from="CloseStore" to="." method="_on_close_store_pressed"]
 [connection signal="toggled" from="AudioSetting" to="." method="_on_audio_setting_toggled"]
 [connection signal="pressed" from="HouseStore" to="." method="_on_house_store_pressed"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="LoadButton" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MainMenu/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MainMenu/LoadGame" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_on_quit_pressed"]
+[connection signal="toggled" from="MainMenu/AudioSettingMainMenu" to="." method="_on_audio_setting_toggled"]

@@ -97,6 +97,7 @@ func load_house(house_data):
 						if item.get_child(0).get_child_count() > 0:
 							item.get_child(0).get_child(0).queue_free()
 						var item_to_move = item.get_child(0)
+						item.get_child(0).texture = item.get_child(0).data.textureArt
 						item.get_child(0).reparent(slot)
 						large_room_installed(item_to_move, str_to_var("Vector2" + room))
 
@@ -147,7 +148,8 @@ func update_inventory_after_purchase(room):
 			var current_inventory_slot = %RoomInventory.get_child(i)
 			if current_inventory_slot.get_child_count() == 0:
 				current_inventory_slot.add_child(room_to_add)
-				current_inventory_slot.get_child(0).texture = room_to_add.data.icon
+				if is_instance_valid(current_inventory_slot.get_child(0)):
+					current_inventory_slot.get_child(0).texture = room_to_add.data.icon
 				current_inventory_slot.name = room_to_add.room_name
 				EventBus.successful_purchase.emit(room_to_add)
 				
@@ -179,28 +181,32 @@ func large_room_installed(room, slot):
 			var panel = TextureRect.new()
 			var room_part_1 = room.data.atlasTexture.duplicate()
 			var room_part_2 = room_part_1.duplicate()
-			room_part_1.region = Rect2(Vector2(0, 0), Vector2(200, 200))
-			room_part_2.region = Rect2(Vector2(200, 0), Vector2(200, 200))
+			room_part_1.region = Rect2(Vector2(0, 0), Vector2(Global.small_room_art_size, Global.small_room_art_size))
+			room_part_2.region = Rect2(Vector2(Global.small_room_art_size, 0), Vector2(Global.small_room_art_size, Global.small_room_art_size))
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
 			var panel_name = room.name
 			panel.name = panel_name + "2"
 			panel.texture = room_part_2
+			panel.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			panel.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			slot_to_hide.add_child(panel)
 		2:
 			room.current_loc = slot
 			var panel = TextureRect.new()
 			var room_part_1 = room.data.atlasTexture.duplicate()
 			var room_part_2 = room_part_1.duplicate()
-			room_part_1.region = Rect2(Vector2(0, 0), Vector2(200, 200))
-			room_part_2.region = Rect2(Vector2(0, 200), Vector2(200, 200))
+			room_part_1.region = Rect2(Vector2(0, 0), Vector2(Global.small_room_art_size, Global.small_room_art_size))
+			room_part_2.region = Rect2(Vector2(0, Global.small_room_art_size), Vector2(Global.small_room_art_size, Global.small_room_art_size))
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.y += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
 			var panel_name = room.name
 			panel.name = panel_name + "2"
 			panel.texture = room_part_2
+			panel.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			panel.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			slot_to_hide.add_child(panel)
 		3:
 			room.current_loc = slot
@@ -211,24 +217,30 @@ func large_room_installed(room, slot):
 			var room_part_2 = room_part_1.duplicate()
 			var room_part_3 = room_part_1.duplicate()
 			var room_part_4 = room_part_1.duplicate()
-			room_part_1.region = Rect2(Vector2(0, 0), Vector2(200, 200)) # Top Left
-			room_part_2.region = Rect2(Vector2(0, 200), Vector2(200, 200)) # Bottom Left
-			room_part_3.region = Rect2(Vector2(200, 0), Vector2(200, 200)) # Top Right
-			room_part_4.region = Rect2(Vector2(200, 200), Vector2(200, 200)) # Bottom Right
+			room_part_1.region = Rect2(Vector2(0, 0), Vector2(Global.small_room_art_size, Global.small_room_art_size)) # Top Left
+			room_part_2.region = Rect2(Vector2(0, Global.small_room_art_size), Vector2(Global.small_room_art_size, Global.small_room_art_size)) # Bottom Left
+			room_part_3.region = Rect2(Vector2(Global.small_room_art_size, 0), Vector2(Global.small_room_art_size, Global.small_room_art_size)) # Top Right
+			room_part_4.region = Rect2(Vector2(Global.small_room_art_size, Global.small_room_art_size), Vector2(Global.small_room_art_size, Global.small_room_art_size)) # Bottom Right
 			%HouseGrid.get_node(str(slot)).get_child(0).texture = room_part_1
 			slot.x += 1
 			var slot_to_hide = %HouseGrid.get_node(str(slot))
 			var panel_name = room.name
 			panel1.name = panel_name + "3"
 			panel1.texture = room_part_3
+			panel1.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			panel1.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			slot_to_hide.add_child(panel1)
 			slot.y += 1
 			slot_to_hide = %HouseGrid.get_node(str(slot))
 			panel2.texture = room_part_4
+			panel2.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			panel2.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			slot_to_hide.add_child(panel2)
 			slot.x -= 1
 			slot_to_hide = %HouseGrid.get_node(str(slot))
 			panel3.texture = room_part_2
+			panel3.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+			panel3.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
 			slot_to_hide.add_child(panel3)
 	room.in_house = true
 

@@ -3,8 +3,8 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
-var startingScore: int = 5000
-var testingDay: bool = true
+var startingScore: int = 6000
+var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +46,7 @@ func new_game():
 				current_house_slot.add_child(room_to_add)
 				Global.current_rooms[room_to_add.name] = room_to_add
 		store_open = false
-		$CloseStore.text = "Open Store"
+		$CloseStore.text = "Buy Rooms"
 		$Hud/HUD/StoreInventoryScroll.hide()
 		$Hud/HUD/HouseGrid.show()
 		$HouseStore.hide()
@@ -126,7 +126,7 @@ func _on_new_day_pressed() -> void:
 func _on_close_store_pressed() -> void:
 	if store_open == true:
 		store_open = false
-		$CloseStore.text = "Open Store"
+		$CloseStore.text = "Buy Rooms"
 		$Hud/HUD/StoreInventoryScroll.hide()
 		$Hud/HUD/HouseGrid.show()
 		$NewDay.show()
@@ -139,13 +139,11 @@ func _on_close_store_pressed() -> void:
 		$NewDay.hide()
 		$HouseStore.hide()
 
-
 func _on_audio_setting_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		$MusicPlayer.stream_paused = false
 	else:
 		$MusicPlayer.stream_paused = true
-
 
 func _on_house_store_pressed() -> void:
 	if store_open == true:
@@ -163,14 +161,11 @@ func _on_house_store_pressed() -> void:
 		$NewDay.hide()
 		$CloseStore.hide()
 
-
 func _on_button_pressed() -> void:
 	save_game()
 
-
 func _on_button_2_pressed() -> void:
 	load_game()
-
 
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
@@ -194,8 +189,23 @@ func load_game():
 			continue
 		Global.load_game(json)
 	store_open = false
-	$CloseStore.text = "Open Store"
+	$CloseStore.text = "Buy Rooms"
 	$Hud/HUD/StoreInventoryScroll.hide()
 	$Hud/HUD/HouseGrid.show()
 	$Hud/HUD/RoomScroll.show()
 	$NewDay.show()
+
+
+func _on_new_game_pressed() -> void:
+	$MainMenu.hide()
+	new_game()
+
+
+func _on_load_game_pressed() -> void:
+	$MainMenu.hide()
+	load_game()
+
+
+func _on_quit_pressed() -> void:
+	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+	get_tree().quit()

@@ -1,18 +1,17 @@
 [gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3 uid="uid://du2n2oatght70"]
 
 [ext_resource type="Texture2D" uid="uid://ccsximgmnf41i" path="res://Rooms(Resources)/Medium Rooms/Sprites/CemeteryIcon.png" id="1_4ebxj"]
+[ext_resource type="Texture2D" uid="uid://bgtpqs0xy0abp" path="res://Rooms(Resources)/Medium Rooms/Sprites/CemetaryCorrect.png" id="1_vjv1t"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="2_6x0ta"]
-[ext_resource type="Texture2D" uid="uid://cw6v858s6ptlj" path="res://Rooms(Resources)/Medium Rooms/Sprites/CemeteryTexture.png" id="3_47b68"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_shkbh"]
-atlas = ExtResource("3_47b68")
+atlas = ExtResource("1_vjv1t")
 
 [resource]
 script = ExtResource("2_6x0ta")
-room_size = 1
+room_size = 2
 room_name = "Cemetery"
 description = ""
-texture = ExtResource("3_47b68")
 atlasTexture = SubResource("AtlasTexture_shkbh")
 icon = ExtResource("1_4ebxj")
 price = 150

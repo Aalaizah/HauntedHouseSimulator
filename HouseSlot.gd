@@ -38,6 +38,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	if !Global.current_rooms.has(data):
 		Global.inventory_rooms.erase(data.name)
 		Global.current_rooms[data.name] = data
+	data.texture = data.data.textureArt
 	data.reparent(self)
 	if data.data.room_size != 0:
 		if data.in_house == true:

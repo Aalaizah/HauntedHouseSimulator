@@ -1,7 +1,7 @@
 class_name RoomItem
 extends TextureRect
 
-@export var data: RoomData
+var data: RoomData
 var room_name: String
 var current_loc: Vector2
 var in_house: bool = false
@@ -13,7 +13,7 @@ func init(d: RoomData) -> void:
 func _ready():
 	expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	stretch_mode = TextureRect.STRETCH_KEEP_ASPECT
-	texture = data.texture
+	texture = data.textureArt
 	tooltip_text = "%s\n%s" % [data.room_name, data.description]
 	
 func _get_drag_data(at_position: Vector2) -> Variant:

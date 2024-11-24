@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://tsydddc08gpi" path="res://Rooms(Resources)/Small Rooms/Sprites/GlurpoIcon.png" id="1_bfria"]
 [ext_resource type="Script" path="res://Rooms(Resources)/RoomData.gd" id="1_iyu1o"]
-[ext_resource type="Texture2D" uid="uid://oo046dnc0thd" path="res://Rooms(Resources)/Small Rooms/Sprites/Glurpo.png" id="3_vpag5"]
+[ext_resource type="Texture2D" uid="uid://oo046dnc0thd" path="res://Rooms(Resources)/Small Rooms/Sprites/Glurpo.png" id="3_e7vta"]
 
 [resource]
 script = ExtResource("1_iyu1o")
 room_size = 0
 room_name = "Clown"
 description = "GLURPO KNOWS ALL"
-texture = ExtResource("3_vpag5")
+textureArt = ExtResource("3_e7vta")
 icon = ExtResource("1_bfria")
 price = 150

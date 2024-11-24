@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf64f0y2fh17q"
-path="res://.godot/imported/clipped_01.png-8f770b935fa61ad8968f79012910c4bb.ctex"
+uid="uid://bgtpqs0xy0abp"
+path="res://.godot/imported/CemetaryCorrect.png-78d9c6b7650653ad47b390c2ba35464e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://clipped_01.png"
-dest_files=["res://.godot/imported/clipped_01.png-8f770b935fa61ad8968f79012910c4bb.ctex"]
+source_file="res://Rooms(Resources)/Medium Rooms/Sprites/CemetaryCorrect.png"
+dest_files=["res://.godot/imported/CemetaryCorrect.png-78d9c6b7650653ad47b390c2ba35464e.ctex"]
 
 [params]
 

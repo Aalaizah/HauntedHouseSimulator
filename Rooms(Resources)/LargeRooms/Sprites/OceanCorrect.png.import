@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf64f0y2fh17q"
-path="res://.godot/imported/clipped_01.png-8f770b935fa61ad8968f79012910c4bb.ctex"
+uid="uid://ynhe5xey2q7o"
+path="res://.godot/imported/OceanCorrect.png-9ea6115220e0655a85a35552aac4692f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://clipped_01.png"
-dest_files=["res://.godot/imported/clipped_01.png-8f770b935fa61ad8968f79012910c4bb.ctex"]
+source_file="res://Rooms(Resources)/LargeRooms/Sprites/OceanCorrect.png"
+dest_files=["res://.godot/imported/OceanCorrect.png-9ea6115220e0655a85a35552aac4692f.ctex"]
 
 [params]
 
