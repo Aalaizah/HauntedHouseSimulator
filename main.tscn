@@ -147,6 +147,7 @@ text = "Upgrade House
 "
 
 [node name="SaveButton" type="Button" parent="."]
+unique_name_in_owner = true
 offset_left = 704.0
 offset_top = 880.0
 offset_right = 840.0
@@ -154,6 +155,7 @@ offset_bottom = 960.0
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="."]
+unique_name_in_owner = true
 offset_left = 848.0
 offset_top = 880.0
 offset_right = 984.0
@@ -216,6 +218,7 @@ offset_bottom = 870.0
 texture = ExtResource("8_jkc52")
 
 [node name="AudioSettingMainMenu" type="CheckBox" parent="MainMenu"]
+layout_mode = 0
 offset_left = 1493.0
 offset_top = 29.0
 offset_right = 1570.0

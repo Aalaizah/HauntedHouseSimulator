@@ -3,7 +3,7 @@ extends Node
 var last_room
 var store_open: bool
 var day_ended: bool
-var startingScore: int = 6000
+var startingScore: int = 1000
 var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -24,14 +24,22 @@ func _process(delta: float) -> void:
 			guest.queue_free()
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
 	get_node("DayTimer/DayTimerProgress").value = timer.wait_time - timer.time_left
-	if timer.time_left <= 0 and guests.size() == 0 and !store_open:
+	if timer.time_left <= 0 and guests.size() == 0 and Global.store_state == Global.StoreStates.NO_STORE_AVAILABLE:
 		$Hud/HUD/RoomScroll.show()
 		$NewDay.show()
-		$CloseStore.show()
-		$HouseStore.show()
+		$SaveButton.show()
+		$LoadButton.show()
 		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
 		day_ended = true
+		if Global.currentDay == 28:
+			Global.currentMonth += 1
+			Global.currentDay = 0
+			Global.store_state = Global.StoreStates.HOUSE_STORE_AVAILABLE
+			$HouseStore.show()
+			$CloseStore.show()
+		elif Global.currentDay % 7 == 0:
+			$CloseStore.show()
 	
 func new_game():
 	Global.score = startingScore
@@ -104,6 +112,8 @@ func _on_new_day_pressed() -> void:
 	new_guest_path()
 	$CloseStore.hide()
 	$HouseStore.hide()
+	$SaveButton.hide()
+	$LoadButton.hide()
 	get_node("NewDay").hide()
 	var day_over = $DayTimer.is_stopped()
 	var current_rooms = 0
@@ -121,6 +131,7 @@ func _on_new_day_pressed() -> void:
 		$DayTimer.start()
 		day_ended = false
 		Global.currentDay += 1
+		Global.store_state = Global.StoreStates.NO_STORE_AVAILABLE
 
 
 func _on_close_store_pressed() -> void:

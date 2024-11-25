@@ -4,7 +4,6 @@ enum StoreStates {NO_STORE_AVAILABLE, ROOM_STORE_AVAILABLE, HOUSE_STORE_AVAILABL
 enum TestingStates {NOT_TESTING, TESTING_DAY, TESTING_ROOM_STORE, TESTING_HOUSE_STORE}
 var state: States = States.STORE_OPEN
 var store_state = StoreStates.NO_STORE_AVAILABLE
-# 328 looked pretty good
 var small_room_size = 288
 var small_room_art_size = 432
 var icon_size = 50
@@ -16,7 +15,8 @@ var store_inventory = {}
 var house_inventory = {}
 var current_house
 var house_size = 6
-var currentDay = 0
+var currentDay: int = 0
+var currentMonth = 1
 var rooms_load = [
 	"res://Rooms(Resources)/Small Rooms/Resources/Classroom.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/Clown.tres",
@@ -39,7 +39,8 @@ func save():
 		"score": score,
 		"current_house": current_house.data.name,
 		"currentDay": currentDay,
-		"player_inventory": inventory_rooms.keys()
+		"player_inventory": inventory_rooms.keys(),
+		"currentMonth": currentMonth
 	}
 	return save_dict
 
