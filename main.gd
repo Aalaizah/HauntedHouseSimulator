@@ -4,7 +4,7 @@ var last_room
 var store_open: bool
 var day_ended: bool
 var startingScore: int = 1000
-var testingDay: bool = false
+var testingDay: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 		if guest.get_child_count() > 0:
 			var speed = guest.get_child(0).speed
 			guest.set_progress(guest.get_progress() + speed * delta)
+		if guest.get_progress_ratio() > .5 and guest.get_child(0).has_flipped == false:
+			guest.get_child(0).get_child(0).flip_h = true
+			guest.get_child(0).has_flipped = true
 		if guest.get_progress_ratio() == 1:
 			guest.get_child(0).guest_exited_house()
 			guest.queue_free()
@@ -48,15 +51,17 @@ func new_game():
 	if testingDay:
 		var rooms = Global.all_rooms.keys()
 		for i in Global.house_size:
-			var current_house_slot = $Hud/HUD/HouseGrid.get_child(i)
+			var current_house_slot = $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.get_child(i)
 			var room_to_add = Global.all_rooms[rooms[i]]
 			if current_house_slot.get_child_count() == 0:
 				current_house_slot.add_child(room_to_add)
 				Global.current_rooms[room_to_add.name] = room_to_add
+				Global.store_inventory.erase(room_to_add.name)
+				EventBus.update_inventory_testing_day.emit()
 		store_open = false
 		$CloseStore.text = "Buy Rooms"
 		$Hud/HUD/StoreInventoryScroll.hide()
-		$Hud/HUD/HouseGrid.show()
+		$Hud/HUD/HouseViewContainer.show()
 		$HouseStore.hide()
 		$Hud/HUD/HouseUpgradeInventory.hide()
 	else:
@@ -70,7 +75,7 @@ func new_game():
 func new_guest_path():
 	var path = $GuestPath.curve
 	var room_center_point = Global.small_room_size / 2.0
-	var house_location = $Hud/HUD/HouseGrid.get_global_position()
+	var house_location = $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.get_global_position()
 	var half_house_size = Global.house_size / 2.0
 	path.clear_points()
 	path.add_point(Vector2(house_location.x - room_center_point, room_center_point + house_location.y))
@@ -103,10 +108,8 @@ func _on_guest_timer_timeout() -> void:
 	$GuestTimer.wait_time = randf_range(0, 6)
 	Global.score += 10
 
-
 func _on_day_timer_timeout() -> void:
 	$GuestTimer.stop()
-
 
 func _on_new_day_pressed() -> void:
 	new_guest_path()
@@ -117,7 +120,7 @@ func _on_new_day_pressed() -> void:
 	get_node("NewDay").hide()
 	var day_over = $DayTimer.is_stopped()
 	var current_rooms = 0
-	for room in $Hud/HUD/HouseGrid.get_children():
+	for room in $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.get_children():
 		if room.get_child_count() > 0:
 			current_rooms += 1
 	if day_over and Global.house_size == current_rooms:
@@ -133,20 +136,19 @@ func _on_new_day_pressed() -> void:
 		Global.currentDay += 1
 		Global.store_state = Global.StoreStates.NO_STORE_AVAILABLE
 
-
 func _on_close_store_pressed() -> void:
 	if store_open == true:
 		store_open = false
 		$CloseStore.text = "Buy Rooms"
 		$Hud/HUD/StoreInventoryScroll.hide()
-		$Hud/HUD/HouseGrid.show()
+		$Hud/HUD/HouseViewContainer.show()
 		$NewDay.show()
 		$HouseStore.show()
 	else:
 		store_open = true
 		$CloseStore.text = "Close Store"
 		$Hud/HUD/StoreInventoryScroll.show()
-		$Hud/HUD/HouseGrid.hide()
+		$Hud/HUD/HouseViewContainer.hide()
 		$NewDay.hide()
 		$HouseStore.hide()
 
@@ -161,14 +163,14 @@ func _on_house_store_pressed() -> void:
 		store_open = false
 		$HouseStore.text = "Open House Store"
 		$Hud/HUD/HouseUpgradeInventory.hide()
-		$Hud/HUD/HouseGrid.show()
+		$Hud/HUD/HouseViewContainer.show()
 		$NewDay.show()
 		$CloseStore.show()
 	else:
 		store_open = true
 		$HouseStore.text = "Close House Store"
 		$Hud/HUD/HouseUpgradeInventory.show()
-		$Hud/HUD/HouseGrid.hide()
+		$Hud/HUD/HouseViewContainer.hide()
 		$NewDay.hide()
 		$CloseStore.hide()
 
@@ -202,20 +204,18 @@ func load_game():
 	store_open = false
 	$CloseStore.text = "Buy Rooms"
 	$Hud/HUD/StoreInventoryScroll.hide()
-	$Hud/HUD/HouseGrid.show()
+	$HUD/HouseViewContainer.show()
 	$Hud/HUD/RoomScroll.show()
 	$NewDay.show()
 
-
 func _on_new_game_pressed() -> void:
+	$"%AudioSetting".reparent(self)
 	$MainMenu.hide()
 	new_game()
-
 
 func _on_load_game_pressed() -> void:
 	$MainMenu.hide()
 	load_game()
-
 
 func _on_quit_pressed() -> void:
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)

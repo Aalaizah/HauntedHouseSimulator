@@ -28,6 +28,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		Global.current_rooms.erase(data.name)
 		Global.inventory_rooms[data.name] = data
 	data.texture = data.data.icon
+	self.name = data.name
 	data.reparent(self)
 	add_label(data)
 	

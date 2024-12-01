@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d16vy5ixp0s7c"]
+[gd_scene load_steps=14 format=3 uid="uid://d16vy5ixp0s7c"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mvq0q"]
 [ext_resource type="PackedScene" uid="uid://bkqc0pcd6h1g" path="res://guest.tscn" id="3_1utyn"]
@@ -25,13 +25,7 @@ font_size = 30
 stream_count = 1
 stream_0 = ExtResource("4_t2ody")
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_86ta5"]
-allow_unpress = true
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imlyd"]
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_t36k3"]
-allow_unpress = true
 
 [node name="Main" type="Node"]
 script = ExtResource("1_mvq0q")
@@ -68,48 +62,51 @@ texture_progress = ExtResource("3_dvily")
 
 [node name="NewDay" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1696.0
-offset_top = 880.0
-offset_right = 1897.0
-offset_bottom = 960.0
+offset_left = 736.0
+offset_top = 371.0
+offset_right = 937.0
+offset_bottom = 451.0
 text = "New Day"
 
 [node name="CloseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1560.0
-offset_top = 880.0
-offset_right = 1685.0
-offset_bottom = 960.0
+offset_left = 600.0
+offset_top = 371.0
+offset_right = 725.0
+offset_bottom = 451.0
 text = "Close Store"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false
 custom_minimum_size = Vector2(160, 656)
-offset_left = 32.0
-offset_top = 128.0
-offset_right = 192.0
-offset_bottom = 784.0
+offset_left = -928.0
+offset_top = -381.0
+offset_right = -768.0
+offset_bottom = 275.0
 texture = ExtResource("6_cp7gf")
-expand_mode = 5
+expand_mode = 1
+stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 visible = false
 custom_minimum_size = Vector2(160, 656)
-offset_left = 1168.0
-offset_top = 128.0
-offset_right = 1328.0
-offset_bottom = 784.0
+offset_left = 96.0
+offset_top = -381.0
+offset_right = 256.0
+offset_bottom = 275.0
 texture = ExtResource("7_w2fvv")
-expand_mode = 5
+expand_mode = 1
+stretch_mode = 4
 
 [node name="GuestPath" type="Path2D" parent="."]
+position = Vector2(-960, -509)
 curve = SubResource("Curve2D_jjcds")
 
 [node name="Score" type="Label" parent="."]
-offset_left = 267.0
-offset_top = 37.0
-offset_right = 307.0
-offset_bottom = 79.0
+offset_left = -693.0
+offset_top = -472.0
+offset_right = -653.0
+offset_bottom = -430.0
 text = "99"
 label_settings = SubResource("LabelSettings_47r48")
 
@@ -121,50 +118,43 @@ offset_right = 75.0
 offset_bottom = 3.0
 text = "Current Score"
 
-[node name="Hud" parent="." instance=ExtResource("6_epp4g")]
-
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamPlaylist_jwtc6")
 autoplay = true
 
-[node name="AudioSetting" type="CheckBox" parent="."]
-unique_name_in_owner = true
-offset_left = 1493.0
-offset_top = 29.0
-offset_right = 1570.0
-offset_bottom = 63.0
-button_group = SubResource("ButtonGroup_86ta5")
-text = "Sound"
-
 [node name="HouseStore" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 1352.0
-offset_top = 880.0
-offset_right = 1550.0
-offset_bottom = 960.0
+offset_left = 392.0
+offset_top = 371.0
+offset_right = 590.0
+offset_bottom = 451.0
 text = "Upgrade House
 "
 
 [node name="SaveButton" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 704.0
-offset_top = 880.0
-offset_right = 840.0
-offset_bottom = 960.0
+offset_left = -256.0
+offset_top = 371.0
+offset_right = -120.0
+offset_bottom = 451.0
 text = "Save"
 
 [node name="LoadButton" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 848.0
-offset_top = 880.0
-offset_right = 984.0
-offset_bottom = 960.0
+offset_left = -112.0
+offset_top = 371.0
+offset_right = 24.0
+offset_bottom = 451.0
 text = "Load"
 
+[node name="Hud" parent="." instance=ExtResource("6_epp4g")]
+
 [node name="MainMenu" type="Panel" parent="."]
-offset_right = 1920.0
-offset_bottom = 1088.0
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 552.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_imlyd")
 
 [node name="GameTitle" type="Label" parent="MainMenu"]
@@ -217,25 +207,26 @@ offset_right = 1238.0
 offset_bottom = 870.0
 texture = ExtResource("8_jkc52")
 
-[node name="AudioSettingMainMenu" type="CheckBox" parent="MainMenu"]
+[node name="AudioSetting" type="CheckBox" parent="MainMenu"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1493.0
 offset_top = 29.0
 offset_right = 1570.0
 offset_bottom = 63.0
 button_pressed = true
-button_group = SubResource("ButtonGroup_t36k3")
 text = "Sound"
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="GuestTimer" to="." method="_on_guest_timer_timeout"]
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]
 [connection signal="pressed" from="NewDay" to="." method="_on_new_day_pressed"]
 [connection signal="pressed" from="CloseStore" to="." method="_on_close_store_pressed"]
-[connection signal="toggled" from="AudioSetting" to="." method="_on_audio_setting_toggled"]
 [connection signal="pressed" from="HouseStore" to="." method="_on_house_store_pressed"]
 [connection signal="pressed" from="SaveButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="LoadButton" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="MainMenu/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainMenu/LoadGame" to="." method="_on_load_game_pressed"]
 [connection signal="pressed" from="MainMenu/Quit" to="." method="_on_quit_pressed"]
-[connection signal="toggled" from="MainMenu/AudioSettingMainMenu" to="." method="_on_audio_setting_toggled"]
+[connection signal="toggled" from="MainMenu/AudioSetting" to="." method="_on_audio_setting_toggled"]

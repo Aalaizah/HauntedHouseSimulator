@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5ojyr6lbbkqn"]
+
+[ext_resource type="Script" path="res://MapCamera2D.gd" id="1_4lrcr"]
+[ext_resource type="Texture2D" uid="uid://6wra5rxmfsrl" path="res://addons/gut/gui/arrow.png" id="2_i1qdw"]
+[ext_resource type="Texture2D" uid="uid://yibepnj2ob1h" path="res://Guests/StickGuest/Background.PNG" id="3_jv6nl"]
+[ext_resource type="Texture2D" uid="uid://cavojn74qp7ij" path="res://addons/gut/images/Script.svg" id="4_6qdql"]
+[ext_resource type="Texture2D" uid="uid://dg1tx8bngnslq" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanTexture.png" id="5_24j6x"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="MapCamera2D" type="Camera2D" parent="."]
+script = ExtResource("1_4lrcr")
+
+[node name="TextureRect" type="TextureRect" parent="MapCamera2D"]
+offset_left = 744.0
+offset_top = 40.0
+offset_right = 784.0
+offset_bottom = 80.0
+texture = ExtResource("2_i1qdw")
+
+[node name="TextureRect2" type="TextureRect" parent="MapCamera2D"]
+offset_left = 952.0
+offset_top = 88.0
+offset_right = 1172.0
+offset_bottom = 559.0
+texture = ExtResource("3_jv6nl")
+
+[node name="TextureRect3" type="TextureRect" parent="MapCamera2D"]
+offset_left = 528.0
+offset_top = 368.0
+offset_right = 568.0
+offset_bottom = 408.0
+texture = ExtResource("4_6qdql")
+
+[node name="TextureRect4" type="TextureRect" parent="MapCamera2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_24j6x")

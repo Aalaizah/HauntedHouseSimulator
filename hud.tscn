@@ -8,12 +8,30 @@
 layer = -1
 script = ExtResource("1_13t0y")
 
-[node name="HouseGrid" type="GridContainer" parent="HUD"]
+[node name="HouseGrid2" type="GridContainer" parent="HUD"]
 unique_name_in_owner = true
-offset_left = 192.0
-offset_top = 128.0
-offset_right = 192.0
-offset_bottom = 128.0
+offset_left = 640.0
+offset_top = 8.0
+offset_right = 1936.0
+offset_bottom = 872.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="HouseViewContainer" type="SubViewportContainer" parent="HUD"]
+offset_top = 8.0
+offset_right = 1920.0
+offset_bottom = 1088.0
+
+[node name="HouseView" type="SubViewport" parent="HUD/HouseViewContainer"]
+handle_input_locally = false
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="HouseGrid" type="GridContainer" parent="HUD/HouseViewContainer/HouseView"]
+unique_name_in_owner = true
+offset_right = 1296.0
+offset_bottom = 864.0
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 0
 columns = 3

@@ -1,3 +1,4 @@
+class_name HUD
 extends CanvasLayer
 
 var roomsLoad = Global.rooms_load
@@ -12,6 +13,7 @@ func _ready() -> void:
 		
 	EventBus.room_bought.connect(add_room_to_player_inventory)
 	EventBus.update_inventory.connect(add_room_to_player_inventory)
+	EventBus.update_inventory_testing_day.connect(add_inventory_slot)
 	EventBus.large_room_installed.connect(large_room_installed)
 	EventBus.large_room_removed.connect(large_room_removed)
 	EventBus.house_bought.connect(house_upgraded)
@@ -75,7 +77,7 @@ func setup_house():
 			houseLocX += 1
 		%HouseGrid.add_child(slot)
 		
-	%HouseGrid.hide()
+	#%HouseGrid.hide()
 	
 func save_house():
 	var house = %HouseGrid.get_children()
@@ -251,3 +253,4 @@ func house_upgraded(house):
 	setup_house_grid()
 	%HouseUpgradeInventory.get_node(house.name).queue_free()
 	Global.house_inventory.erase(house.name)
+	
