@@ -44,7 +44,6 @@ curve = SubResource("Curve2D_64ctp")
 [node name="MapCamera2D" type="Camera2D" parent="HUD/HouseViewContainer/HouseView"]
 offset = Vector2(1250, 600)
 zoom = Vector2(0.75, 0.75)
-limit_right = 1920
 position_smoothing_enabled = true
 script = ExtResource("2_64ctp")
 zoom_max = 1.5

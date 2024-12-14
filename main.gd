@@ -4,7 +4,6 @@ var last_room
 var store_open: bool
 var day_ended: bool
 var startingScore: int = 1000
-var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,30 +49,13 @@ func new_game():
 	Global.score = startingScore
 	day_ended = false
 	get_node("DayTimer/DayTimerProgress").max_value = get_node("DayTimer").wait_time
-	if testingDay:
-		var rooms = Global.all_rooms.keys()
-		for i in Global.house_size:
-			var current_house_slot = $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.get_child(i)
-			var room_to_add = Global.all_rooms[rooms[i]]
-			if current_house_slot.get_child_count() == 0:
-				current_house_slot.add_child(room_to_add)
-				Global.current_rooms[room_to_add.name] = room_to_add
-				Global.store_inventory.erase(room_to_add.name)
-				EventBus.update_inventory_testing_day.emit()
-		store_open = false
-		$CloseStore.text = "Buy Rooms"
-		$Hud/HUD/StoreInventoryScroll.hide()
-		$Hud/HUD/HouseViewContainer.show()
-		$HouseStore.hide()
-		$Hud/HUD/HouseUpgradeInventory.hide()
-	else:
-		get_node("DayTimer/DayTimerProgress").hide()
-		get_node("DayTimer/DayTimerLabel").hide()
-		$Hud/HUD/HouseUpgradeInventory.hide()
-		$Hud/HUD/HouseViewContainer.hide()
-		$HouseStore.hide()
-		store_open = true
-		$NewDay.hide()
+	get_node("DayTimer/DayTimerProgress").hide()
+	get_node("DayTimer/DayTimerLabel").hide()
+	$Hud/HUD/HouseUpgradeInventory.hide()
+	$Hud/HUD/HouseViewContainer.hide()
+	$HouseStore.hide()
+	store_open = true
+	$NewDay.hide()
 	
 func new_guest_path():
 	var path = $Hud/HUD/HouseViewContainer/HouseView/GuestPath.curve
@@ -226,4 +208,21 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func house_code():
+	var rooms = Global.all_rooms.keys()
+	for i in Global.house_size:
+		var current_house_slot = $Hud/HUD/HouseViewContainer/HouseView/HouseHBoxContainer/HouseGrid.get_child(i)
+		var room_to_add = Global.all_rooms[rooms[i]]
+		var store_rooms = $Hud/HUD/StoreInventoryScroll/StoreInventory.get_children()
+		if current_house_slot.get_child_count() == 0:
+			current_house_slot.add_child(room_to_add)
+			Global.current_rooms[room_to_add.name] = room_to_add
+			$Hud/HUD/StoreInventoryScroll/StoreInventory.get_node(NodePath(room_to_add.name)).queue_free()
+			Global.store_inventory.erase(room_to_add.name)
+			EventBus.update_inventory_testing_day.emit()
+	store_open = false
+	$CloseStore.text = "Buy Rooms"
+	$Hud/HUD/StoreInventoryScroll.hide()
+	$Hud/HUD/HouseViewContainer.show()
+	$HouseStore.hide()
+	$Hud/HUD/HouseUpgradeInventory.hide()
 	Console.print_line("House filled")
