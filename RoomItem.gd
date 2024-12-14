@@ -27,6 +27,7 @@ func make_drag_preview(at_position: Vector2):
 	t.custom_minimum_size = Vector2(100, 100)
 	t.modulate.a = 0.5
 	t.position = Vector2(-at_position)
+	t.texture = data.textureArt
 	
 	var c:= Control.new()
 	c.add_child(t)

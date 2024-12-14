@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://bkqc0pcd6h1g"]
 
-[ext_resource type="Script" path="res://guest.gd" id="1_ik1tu"]
+[ext_resource type="Script" uid="uid://1540owh8ouf7" path="res://guest.gd" id="1_ik1tu"]
 [ext_resource type="Texture2D" uid="uid://bx31ov3nraugx" path="res://Guests/StickGuest/Layer.PNG" id="2_0ntc2"]
 [ext_resource type="Texture2D" uid="uid://dhbf8sin1x1io" path="res://SpookyAssets/Animated_48x48/Characters_48x48/Main_characters_48x48/Character_F_sheet_complete_48x48.png" id="2_83cb7"]
 [ext_resource type="Texture2D" uid="uid://crionpjssu78f" path="res://Guests/StickGuest/Paint Layer 3(pasted).PNG" id="3_okaua"]

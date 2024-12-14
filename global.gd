@@ -4,7 +4,7 @@ enum StoreStates {NO_STORE_AVAILABLE, ROOM_STORE_AVAILABLE, HOUSE_STORE_AVAILABL
 enum TestingStates {NOT_TESTING, TESTING_DAY, TESTING_ROOM_STORE, TESTING_HOUSE_STORE}
 var state: States = States.STORE_OPEN
 var store_state = StoreStates.NO_STORE_AVAILABLE
-var small_room_size = 288
+var small_room_size = 432
 var small_room_art_size = 432
 var icon_size = 50
 var score = 0

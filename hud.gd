@@ -77,6 +77,10 @@ func setup_house():
 			houseLocX += 1
 		%HouseGrid.add_child(slot)
 		
+	var houseWidth = %HouseGrid.columns * Global.small_room_size
+	%HouseBackSide.position.x = houseWidth + 240
+	
+		
 	#%HouseGrid.hide()
 	
 func save_house():
@@ -140,9 +144,9 @@ func add_room_to_player_inventory(room_name: String, purchasePrice: int):
 		add_inventory_slot()
 		update_inventory_after_purchase(room_name)
 
-func update_store(room_name):
-	%StoreInventory.get_node(room_name).queue_free()
-	Global.store_inventory.erase(room_name)
+func update_store(item_name):
+	%StoreInventory.get_node(item_name).queue_free()
+	Global.store_inventory.erase(item_name)
 				
 func update_inventory_after_purchase(room):
 		var room_to_add = Global.inventory_rooms[room]

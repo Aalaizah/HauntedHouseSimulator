@@ -4,7 +4,7 @@ var last_room
 var store_open: bool
 var day_ended: bool
 var startingScore: int = 1000
-var testingDay: bool = true
+var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	get_node("Score").text = str(Global.score)
-	var guests = get_node("GuestPath").get_children()
+	var guests = get_node("Hud/HUD/HouseViewContainer/HouseView/GuestPath").get_children()
 	var timer = get_node("DayTimer")
 	for guest in guests:
 		if guest.get_child_count() > 0:
@@ -68,14 +68,15 @@ func new_game():
 		get_node("DayTimer/DayTimerProgress").hide()
 		get_node("DayTimer/DayTimerLabel").hide()
 		$Hud/HUD/HouseUpgradeInventory.hide()
+		$Hud/HUD/HouseViewContainer.hide()
 		$HouseStore.hide()
 		store_open = true
 		$NewDay.hide()
 	
 func new_guest_path():
-	var path = $GuestPath.curve
+	var path = $Hud/HUD/HouseViewContainer/HouseView/GuestPath.curve
 	var room_center_point = Global.small_room_size / 2.0
-	var house_location = $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.get_global_position()
+	var house_location = $Hud/HUD/HouseViewContainer/HouseView/HouseGrid.position
 	var half_house_size = Global.house_size / 2.0
 	path.clear_points()
 	path.add_point(Vector2(house_location.x - room_center_point, room_center_point + house_location.y))
@@ -100,7 +101,7 @@ func _on_guest_timer_timeout() -> void:
 	var guest_path = PathFollow2D.new()
 	guest_path.rotates = false
 	guest_path.loop = false
-	get_node("GuestPath").add_child(guest_path)
+	get_node("Hud/HUD/HouseViewContainer/HouseView/GuestPath").add_child(guest_path)
 	var guest = guest_scene.instantiate()
 	guest.z_index = 5
 	guest.favorite_room = get_room()
