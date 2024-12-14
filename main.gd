@@ -8,7 +8,9 @@ var testingDay: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	new_game()
+	EventBus.fill_house_code_used.connect(house_code)
+	Console.enabled = false
+	#new_game()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -213,6 +215,7 @@ func _on_new_game_pressed() -> void:
 	$"%AudioSetting".reparent(self)
 	$MainMenu.hide()
 	new_game()
+	Console.enabled = true
 
 func _on_load_game_pressed() -> void:
 	$MainMenu.hide()
@@ -221,3 +224,6 @@ func _on_load_game_pressed() -> void:
 func _on_quit_pressed() -> void:
 	get_tree().root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	get_tree().quit()
+
+func house_code():
+	Console.print_line("House filled")

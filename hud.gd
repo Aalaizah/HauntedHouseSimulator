@@ -78,8 +78,13 @@ func setup_house():
 		%HouseGrid.add_child(slot)
 		
 	var houseWidth = %HouseGrid.columns * Global.small_room_size
-	%HouseBackSide.position.x = houseWidth + 240
-	
+	%HouseBackSide.position.x = houseWidth + 290
+	%HouseHBoxContainer.size.x = houseWidth + (290 * 2)
+	#%HouseBackground.size.y = Global.small_room_size * 2 + 100
+	%HouseBackground.size.x = houseWidth + (290 * 2)
+	%HouseBackground.size.y = Global.small_room_size * 2 + 100
+	%HouseView.size.x = houseWidth + (290 * 2)
+	%HouseView.size.y = Global.small_room_size * 2 + 100
 		
 	#%HouseGrid.hide()
 	

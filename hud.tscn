@@ -20,60 +20,63 @@ layer = -1
 script = ExtResource("1_13t0y")
 
 [node name="HouseViewContainer" type="SubViewportContainer" parent="HUD"]
-offset_left = 64.0
-offset_top = 152.0
-offset_right = 3064.0
-offset_bottom = 3152.0
+clip_contents = true
+offset_left = 112.0
+offset_top = 88.0
+offset_right = 1784.0
+offset_bottom = 912.0
 
 [node name="HouseView" type="SubViewport" parent="HUD/HouseViewContainer"]
+unique_name_in_owner = true
 disable_3d = true
 handle_input_locally = false
 snap_2d_transforms_to_pixel = true
-size = Vector2i(1920, 1080)
-size_2d_override = Vector2i(900, 500)
 render_target_update_mode = 4
 
-[node name="TextureRect" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
-offset_right = 3000.0
-offset_bottom = 3000.0
+[node name="HouseBackground" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
+unique_name_in_owner = true
 texture = SubResource("PlaceholderTexture2D_640wx")
 expand_mode = 2
-
-[node name="HouseEntrance" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("3_640wx")
-stretch_mode = 5
-
-[node name="HouseBackSide" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
-unique_name_in_owner = true
-offset_left = 500.0
-offset_right = 740.0
-offset_bottom = 864.0
-texture = ExtResource("4_a2258")
-stretch_mode = 5
-
-[node name="HouseGrid" type="GridContainer" parent="HUD/HouseViewContainer/HouseView"]
-unique_name_in_owner = true
-offset_left = 240.0
-offset_right = 240.0
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 0
-columns = 3
 
 [node name="GuestPath" type="Path2D" parent="HUD/HouseViewContainer/HouseView"]
 curve = SubResource("Curve2D_64ctp")
 
 [node name="MapCamera2D" type="Camera2D" parent="HUD/HouseViewContainer/HouseView"]
-position = Vector2(64, 152)
-offset = Vector2(900, 400)
+offset = Vector2(1250, 600)
+zoom = Vector2(0.75, 0.75)
+limit_right = 1920
 position_smoothing_enabled = true
 script = ExtResource("2_64ctp")
-zoom_min = 0.2
 zoom_max = 1.5
 zoom_relative = false
 pan_speed = 0.0
 metadata/_custom_type_script = ExtResource("2_64ctp")
+
+[node name="HouseHBoxContainer" type="HBoxContainer" parent="HUD/HouseViewContainer/HouseView"]
+unique_name_in_owner = true
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 538.0
+offset_bottom = 914.0
+theme_override_constants/separation = 0
+
+[node name="HouseEntrance" type="TextureRect" parent="HUD/HouseViewContainer/HouseView/HouseHBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_640wx")
+stretch_mode = 5
+
+[node name="HouseGrid" type="GridContainer" parent="HUD/HouseViewContainer/HouseView/HouseHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 3
+
+[node name="HouseBackSide" type="TextureRect" parent="HUD/HouseViewContainer/HouseView/HouseHBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_a2258")
+stretch_mode = 5
 
 [node name="StoreInventoryScroll" type="ScrollContainer" parent="HUD"]
 offset_left = 64.0
