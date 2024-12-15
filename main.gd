@@ -212,7 +212,6 @@ func house_code():
 	for i in Global.house_size:
 		var current_house_slot = $Hud/HUD/HouseViewContainer/HouseView/HouseHBoxContainer/HouseGrid.get_child(i)
 		var room_to_add = Global.all_rooms[rooms[i]]
-		var store_rooms = $Hud/HUD/StoreInventoryScroll/StoreInventory.get_children()
 		if current_house_slot.get_child_count() == 0:
 			current_house_slot.add_child(room_to_add)
 			Global.current_rooms[room_to_add.name] = room_to_add

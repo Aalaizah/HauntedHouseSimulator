@@ -30,8 +30,38 @@ class Test_House_Upgrade:
 		assert_eq(testHouse.house_size, Global.house_size)
 
 class Test_Room_Purchase:
+	extends GutTest
+	var myHudScene = load("res://hud.tscn")
+	var testHud
+	var myHudNode
+	var testRoomSmall
+
+	func before_each():
+		testHud = double(myHudScene)
+		myHudNode = autofree(testHud.instantiate().get_child(0))
+		myHudNode.roomsLoad = ["res://Rooms(Resources)/Small Rooms/Resources/Clown.tres"]
+		myHudNode.load_rooms()
+		myHudNode.setup_room_store()
+		testRoomSmall = load("res://Rooms(Resources)/Small Rooms/Resources/Clown.tres")
+	
+	func test_buy_room_signal_emits():
+		# mock the buy button being clicked
+		# assert that the signal emits once
+		#how the fuck do I find the button so I can call the buy button click method
+		watch_signals(EventBus)
+		var tryingToFindButton = myHudNode.get_node(NodePath("StoreInventoryScroll")).get_node(NodePath("StoreInventory")).get_child(0).get_child(0).get_children()
+		print(tryingToFindButton)
+		assert_signal_emit_count(EventBus, 'room_bought', 1)
+	
 	func test_room_purchase_enough_money():
-		pass
+		Global.score = testRoomSmall.price
+		myHudNode.add_room_to_player_inventory(testRoomSmall.room_name, testRoomSmall.price)
+		assert_eq(Global.score, 0)
+		
+	func test_room_inventory_updates():
+		assert_eq(Global.inventory_rooms.size(), 0)
+		myHudNode.add_room_to_player_inventory(testRoomSmall.room_name, 0)
+		assert_eq(Global.inventory_rooms.size(), 1)
 		
 class Test_Room_Install:
 	func install_successful():
