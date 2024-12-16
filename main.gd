@@ -88,7 +88,7 @@ func _on_guest_timer_timeout() -> void:
 	get_node("Hud/HUD/HouseViewContainer/HouseView/GuestPath").add_child(guest_path)
 	var guest = guest_scene.instantiate()
 	guest.z_index = 5
-	guest.favorite_room = get_room()
+	#guest.favorite_room = get_room()
 	guest_path.add_child(guest)
 	$GuestTimer.wait_time = randf_range(0, 6)
 	Global.score += 10
