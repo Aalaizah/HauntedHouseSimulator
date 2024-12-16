@@ -159,12 +159,6 @@ func _on_house_store_pressed() -> void:
 		$NewDay.hide()
 		$CloseStore.hide()
 
-func _on_button_pressed() -> void:
-	save_game()
-
-func _on_button_2_pressed() -> void:
-	load_game()
-
 func save_game():
 	var save_file = FileAccess.open("user://savegame.save", FileAccess.WRITE)
 	var save_data = Global.save()
