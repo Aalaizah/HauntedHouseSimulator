@@ -17,6 +17,7 @@ var current_house
 var house_size = 6
 var currentDay: int = 0
 var currentMonth = 1
+var maxTip = 5
 var rooms_load = [
 	"res://Rooms(Resources)/Small Rooms/Resources/Classroom.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/Clown.tres",

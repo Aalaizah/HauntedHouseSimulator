@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 			guest.get_child(0).get_child(0).flip_h = true
 			guest.get_child(0).has_flipped = true
 		if guest.get_progress_ratio() == 1:
-			guest.get_child(0).guest_exited_house()
+			guest.get_child(0).guest_exited_house(Global.maxTip)
 			guest.queue_free()
 	get_node("DayTimer/DayTimerLabel").text = str(int(timer.time_left))
 	get_node("DayTimer/DayTimerProgress").value = timer.wait_time - timer.time_left
@@ -88,7 +88,6 @@ func _on_guest_timer_timeout() -> void:
 	get_node("Hud/HUD/HouseViewContainer/HouseView/GuestPath").add_child(guest_path)
 	var guest = guest_scene.instantiate()
 	guest.z_index = 5
-	#guest.favorite_room = get_room()
 	guest_path.add_child(guest)
 	$GuestTimer.wait_time = randf_range(0, 6)
 	Global.score += 10

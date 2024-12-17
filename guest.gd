@@ -10,8 +10,8 @@ func _ready() -> void:
 	get_random_anim()
 	get_room()
 	
-func guest_exited_house():
-	var score_to_add = (randi() % 5) + 1
+func guest_exited_house(maxTip: int):
+	var score_to_add = (randi() % maxTip) + 1
 	if Global.current_rooms.has(self.favorite_room):
 		tip_multiplier = 2
 	Global.score += score_to_add * tip_multiplier
