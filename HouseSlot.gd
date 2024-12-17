@@ -7,9 +7,6 @@ var slot_loc: Vector2
 func init(rs: RoomData.Room_Size, cms: Vector2) -> void:
 	room_size = rs
 	custom_minimum_size = cms
-	
-func _ready():
-	pass
 
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is RoomItem:
