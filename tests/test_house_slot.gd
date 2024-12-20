@@ -17,6 +17,9 @@ func before_each():
 	testParentNode = testHouseSlotScript.new()
 	testParentNode.init(testRoomSmall.room_size, roomSize)
 	
+func after_each():
+	Global.current_rooms.clear()
+	
 func test_can_drop_data_when_can_small():
 	testRoom = RoomItem.new()
 	testRoom.init(testRoomSmall)
@@ -100,3 +103,56 @@ func test_drop_data_large():
 	testParentNode.add_child(testRoom)
 	testHouseSlot._drop_data(roomSize, testRoom)
 	assert_same(testRoom.get_parent(), testHouseSlot)
+
+func test_room_added_to_house_dictionary():
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomSmall)
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_eq(Global.current_rooms.size(), 1)
+	
+func test_room_removed_from_inventory():
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomSmall)
+	testRoom.name = testRoom.room_name
+	Global.inventory_rooms[testRoom.name] = testRoom
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_eq(Global.inventory_rooms.size(), 0)
+	
+func test_large_room_removed_emits_if_in_house():
+	watch_signals(EventBus)
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomLarge)
+	testRoom.name = testRoom.room_name
+	testRoom.in_house = true
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_signal_emit_count(EventBus, "large_room_removed", 1)
+	
+func test_large_room_removed_doesnt_emit_if_not_in_house():
+	watch_signals(EventBus)
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomLarge)
+	testRoom.name = testRoom.room_name
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_signal_not_emitted(EventBus, "large_room_removed")
+	
+func test_large_room_installed_emits():
+	watch_signals(EventBus)
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomLarge)
+	testRoom.name = testRoom.room_name
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_signal_emit_count(EventBus, "large_room_installed", 1)
+	
+func test_small_room_doesnt_emit_large_room_installed():
+	watch_signals(EventBus)
+	testRoom = RoomItem.new()
+	testRoom.init(testRoomSmall)
+	testRoom.name = testRoom.room_name
+	testParentNode.add_child(testRoom)
+	testHouseSlot._drop_data(roomSize, testRoom)
+	assert_signal_not_emitted(EventBus, "large_room_installed")
