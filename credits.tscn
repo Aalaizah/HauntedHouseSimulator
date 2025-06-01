@@ -1,0 +1,66 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccvgvf3t4gtp"]
+
+[ext_resource type="Script" uid="uid://jf1622y6p2ra" path="res://credits.gd" id="1_nm7lk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imlyd"]
+
+[node name="Credits" type="Node"]
+script = ExtResource("1_nm7lk")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 544.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_imlyd")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 1920.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 75
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 192.0
+offset_right = 1920.0
+offset_bottom = 333.0
+theme_override_font_sizes/font_size = 50
+text = "Programming and Design work:
+Alex Mack"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 376.0
+offset_right = 1920.0
+offset_bottom = 680.0
+theme_override_font_sizes/font_size = 50
+text = "Music by The Blake Robinson Synthetic Orchestra:
+http://syntheticorchestra.com/
+http://blake.so/bandcamp
+http://youtube.com/SyntheticOrchestra"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 0
+offset_top = 720.0
+offset_right = 1920.0
+offset_bottom = 1024.0
+theme_override_font_sizes/font_size = 50
+text = "Tilemaps by dhassa:
+https://itch.io/profile/dhassa"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 1712.0
+offset_top = 976.0
+offset_right = 1848.0
+offset_bottom = 1056.0
+text = "Return to Menu"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

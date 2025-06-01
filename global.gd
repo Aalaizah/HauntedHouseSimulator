@@ -4,10 +4,13 @@ enum StoreStates {NO_STORE_AVAILABLE, ROOM_STORE_AVAILABLE, HOUSE_STORE_AVAILABL
 enum TestingStates {NOT_TESTING, TESTING_DAY, TESTING_ROOM_STORE, TESTING_HOUSE_STORE}
 var state: States = States.STORE_OPEN
 var store_state = StoreStates.NO_STORE_AVAILABLE
+var ticket_queue = []
 var small_room_size = 432
 var small_room_art_size = 432
 var icon_size = 50
 var score = 0
+var ticket_price = 10
+var guest_timer = 6
 var all_rooms = {}
 var current_rooms = {}
 var inventory_rooms = {}
@@ -21,14 +24,19 @@ var maxTip = 5
 var rooms_load = [
 	"res://Rooms(Resources)/Small Rooms/Resources/Classroom.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/Clown.tres",
-	"res://Rooms(Resources)/Small Rooms/Resources/Forest.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/OperatingRoom.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/Witch.tres",
 	"res://Rooms(Resources)/Small Rooms/Resources/Pirate.tres",
+	"res://Rooms(Resources)/Small Rooms/Resources/Cellar.tres",
 	"res://Rooms(Resources)/Medium Rooms/Resources/Cemetery.tres",
 	"res://Rooms(Resources)/Medium Rooms/Resources/Swamp.tres",
 	"res://Rooms(Resources)/LargeRooms/Resources/Ocean.tres"
 	]
+#var rooms_load = [
+	#"res://Rooms(Resources)/LargeRooms/Resources/",
+	#"res://Rooms(Resources)/Medium Rooms/Resources/",
+	#"res://Rooms(Resources)/Small Rooms/Resources/"
+#]
 var house_upgrades_load = [
 	"res://Houses(Resources)/SmallHouse.tres",
 	"res://Houses(Resources)/MediumHouse.tres",

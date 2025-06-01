@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3 uid="uid://7ktu7ccix5yu"]
+
+[ext_resource type="Texture2D" uid="uid://ynhe5xey2q7o" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanCorrect.png" id="1_15j3v"]
+[ext_resource type="Texture2D" uid="uid://b1hcqoev0iwao" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanIcon.png" id="2_sh01b"]
+[ext_resource type="Script" uid="uid://ci1mk85kx5l37" path="res://Rooms(Resources)/RoomData.gd" id="3_1y1pk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr3kv"]
+atlas = ExtResource("1_15j3v")
+
+[resource]
+script = ExtResource("3_1y1pk")
+room_size = 3
+room_name = "Volcano"
+description = ""
+atlasTexture = SubResource("AtlasTexture_xr3kv")
+icon = ExtResource("2_sh01b")
+price = 200

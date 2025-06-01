@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://c2p0cja1riypu" path="res://clipped_02.png" id="3_640wx"]
 [ext_resource type="Texture2D" uid="uid://bswj66yxruhc2" path="res://clipped_03.png" id="4_a2258"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_640wx"]
-
 [sub_resource type="Curve2D" id="Curve2D_64ctp"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 218, 101, 0, 0, 0, 0, 817, 102, 0, 0, 0, 0, 818, 399, 0, 0, 0, 0, 210, 405)
 }
 point_count = 4
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_640wx"]
 
 [node name="Hud" type="Node" groups=["Persist"]]
 
@@ -30,13 +30,7 @@ offset_bottom = 912.0
 unique_name_in_owner = true
 disable_3d = true
 handle_input_locally = false
-snap_2d_transforms_to_pixel = true
 render_target_update_mode = 4
-
-[node name="HouseBackground" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
-unique_name_in_owner = true
-texture = SubResource("PlaceholderTexture2D_640wx")
-expand_mode = 2
 
 [node name="GuestPath" type="Path2D" parent="HUD/HouseViewContainer/HouseView"]
 curve = SubResource("Curve2D_64ctp")
@@ -50,6 +44,12 @@ zoom_max = 1.5
 zoom_relative = false
 pan_speed = 0.0
 metadata/_custom_type_script = ExtResource("2_64ctp")
+
+[node name="HouseBackground" type="TextureRect" parent="HUD/HouseViewContainer/HouseView"]
+unique_name_in_owner = true
+visible = false
+texture = SubResource("PlaceholderTexture2D_640wx")
+expand_mode = 2
 
 [node name="HouseHBoxContainer" type="HBoxContainer" parent="HUD/HouseViewContainer/HouseView"]
 unique_name_in_owner = true

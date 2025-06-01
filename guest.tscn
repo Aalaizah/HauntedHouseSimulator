@@ -1,11 +1,8 @@
-[gd_scene load_steps=27 format=3 uid="uid://bkqc0pcd6h1g"]
+[gd_scene load_steps=24 format=3 uid="uid://bkqc0pcd6h1g"]
 
 [ext_resource type="Script" uid="uid://1540owh8ouf7" path="res://guest.gd" id="1_ik1tu"]
-[ext_resource type="Texture2D" uid="uid://bx31ov3nraugx" path="res://Guests/StickGuest/Layer.PNG" id="2_0ntc2"]
 [ext_resource type="Texture2D" uid="uid://dhbf8sin1x1io" path="res://SpookyAssets/Animated_48x48/Characters_48x48/Main_characters_48x48/Character_F_sheet_complete_48x48.png" id="2_83cb7"]
-[ext_resource type="Texture2D" uid="uid://crionpjssu78f" path="res://Guests/StickGuest/Paint Layer 3(pasted).PNG" id="3_okaua"]
 [ext_resource type="Texture2D" uid="uid://d880auotn7vx" path="res://SpookyAssets/Animated_48x48/Characters_48x48/Main_characters_48x48/Character_F_2_sheet_complete_48x48.png" id="3_w7vnr"]
-[ext_resource type="Texture2D" uid="uid://yibepnj2ob1h" path="res://Guests/StickGuest/Background.PNG" id="4_40cd4"]
 [ext_resource type="Texture2D" uid="uid://bhmg0irlic2pe" path="res://SpookyAssets/Animated_48x48/Characters_48x48/Main_characters_48x48/Character_M_sheet_complete_48x48.png" id="4_met6i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6dpqr"]
@@ -150,23 +147,6 @@ animations = [{
 "loop": true,
 "name": &"walk-m1",
 "speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_0ntc2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_okaua")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_40cd4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_okaua")
-}],
-"loop": true,
-"name": &"walk-stick",
-"speed": 5.0
 }]
 
 [node name="Guest" type="Node2D"]
@@ -174,4 +154,4 @@ script = ExtResource("1_ik1tu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3k2u6")
-animation = &"walk-stick"
+animation = &"walk-f1"

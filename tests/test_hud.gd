@@ -42,8 +42,10 @@ class Test_Room_Purchase:
 		myHudNode.load_rooms()
 		myHudNode.setup_room_store()
 		testRoomSmall = load("res://Rooms(Resources)/Small Rooms/Resources/Clown.tres")
+		
+	func after_each():
+		Global.inventory_rooms.clear()
 
-	
 	func test_room_purchase_enough_money():
 		Global.score = testRoomSmall.price
 		myHudNode.add_room_to_player_inventory(testRoomSmall.room_name, testRoomSmall.price)
@@ -55,5 +57,6 @@ class Test_Room_Purchase:
 		assert_eq(Global.inventory_rooms.size(), 1)
 		
 class Test_Room_Install:
+	extends GutTest
 	func install_successful():
-		pass
+		pending("still need to write more tests")

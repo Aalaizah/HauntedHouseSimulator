@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=5 format=3 uid="uid://kxjrub3bwbk4"]
+
+[ext_resource type="Texture2D" uid="uid://ynhe5xey2q7o" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanCorrect.png" id="1_sr7gp"]
+[ext_resource type="Texture2D" uid="uid://b1hcqoev0iwao" path="res://Rooms(Resources)/LargeRooms/Sprites/OceanIcon.png" id="2_2li1q"]
+[ext_resource type="Script" uid="uid://ci1mk85kx5l37" path="res://Rooms(Resources)/RoomData.gd" id="3_2742a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr3kv"]
+atlas = ExtResource("1_sr7gp")
+
+[resource]
+script = ExtResource("3_2742a")
+room_size = 3
+room_name = "Dinosaur"
+description = ""
+atlasTexture = SubResource("AtlasTexture_xr3kv")
+icon = ExtResource("2_2li1q")
+price = 200

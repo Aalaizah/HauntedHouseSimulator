@@ -78,15 +78,12 @@ func setup_house():
 		%HouseGrid.add_child(slot)
 		
 	var houseWidth = %HouseGrid.columns * Global.small_room_size
-	%HouseBackSide.position.x = houseWidth + 290
+	%HouseBackSide.position.x = houseWidth + 240
 	%HouseHBoxContainer.size.x = houseWidth + (290 * 2)
-	#%HouseBackground.size.y = Global.small_room_size * 2 + 100
 	%HouseBackground.size.x = houseWidth + (290 * 2)
 	%HouseBackground.size.y = Global.small_room_size * 2 + 100
 	%HouseView.size.x = houseWidth + (290 * 2)
 	%HouseView.size.y = Global.small_room_size * 2 + 100
-		
-	#%HouseGrid.hide()
 	
 func save_house():
 	var house = %HouseGrid.get_children()
@@ -98,7 +95,7 @@ func save_house():
 
 func load_house(house_data):
 	setup_house()
-	var house = get_node("HouseGrid").get_children()
+	var house = get_node("HouseViewContainer/HouseView/HouseHBoxContainer/HouseGrid").get_children()
 	var inv = get_node("RoomScroll/RoomInventory").get_children()
 	for room in house_data:
 		for slot in house:

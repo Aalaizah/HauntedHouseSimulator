@@ -14,7 +14,7 @@ func guest_exited_house(maxTip: int):
 	var score_to_add = (randi() % maxTip) + 1
 	if Global.current_rooms.has(self.favorite_room):
 		tip_multiplier = 2
-	Global.score += score_to_add * tip_multiplier
+	return score_to_add * tip_multiplier
 		
 func get_random_anim():
 	var choices = $AnimatedSprite2D.sprite_frames.get_animation_names()

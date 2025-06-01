@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr8tv4veuj0lx"]
+
+[ext_resource type="Texture2D" uid="uid://cnr3waxxn4gum" path="res://MenuShot.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://8vqw70rax4hb" path="res://main_menu.gd" id="1_7vrkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imlyd"]
+
+[node name="Node" type="Node"]
+
+[node name="MainMenu" type="Panel" parent="."]
+offset_left = -960.0
+offset_top = -536.0
+offset_right = 960.0
+offset_bottom = 552.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_imlyd")
+script = ExtResource("1_7vrkn")
+
+[node name="GameTitle" type="Label" parent="MainMenu"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 88.0
+offset_right = 1544.0
+offset_bottom = 191.0
+theme_override_font_sizes/font_size = 75
+text = "Mrs. Moneybags Haunted House"
+
+[node name="NewGame" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 328.0
+offset_right = 1472.0
+offset_bottom = 408.0
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 424.0
+offset_right = 1472.0
+offset_bottom = 504.0
+text = "Load Game"
+
+[node name="Settings" type="Button" parent="MainMenu"]
+visible = false
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 520.0
+offset_right = 1472.0
+offset_bottom = 600.0
+text = "Settings"
+
+[node name="Credits" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 520.0
+offset_right = 1472.0
+offset_bottom = 600.0
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MainMenu"]
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 616.0
+offset_right = 1472.0
+offset_bottom = 696.0
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 296.0
+offset_right = 1238.0
+offset_bottom = 870.0
+texture = ExtResource("1_06t4h")
+
+[node name="AudioSetting" type="CheckBox" parent="MainMenu"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1493.0
+offset_top = 29.0
+offset_right = 1570.0
+offset_bottom = 63.0
+button_pressed = true
+text = "Sound"
